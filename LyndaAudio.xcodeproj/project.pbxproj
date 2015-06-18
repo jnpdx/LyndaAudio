@@ -18,6 +18,8 @@
 		A80953DA1B335BB100AD064D /* Cowbell.wav in Resources */ = {isa = PBXBuildFile; fileRef = A80953D91B335BB100AD064D /* Cowbell.wav */; };
 		A80953DC1B335C1A00AD064D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A80953DB1B335C1A00AD064D /* AudioToolbox.framework */; };
 		A80953DE1B335E1500AD064D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A80953DD1B335E1500AD064D /* AVFoundation.framework */; };
+		A80953E01B33761700AD064D /* 13 So Many Times.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A80953DF1B33761700AD064D /* 13 So Many Times.mp3 */; };
+		A80953E31B3377F000AD064D /* AudioUnitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A80953E21B3377F000AD064D /* AudioUnitViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,9 @@
 		A80953D91B335BB100AD064D /* Cowbell.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Cowbell.wav; sourceTree = "<group>"; };
 		A80953DB1B335C1A00AD064D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		A80953DD1B335E1500AD064D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		A80953DF1B33761700AD064D /* 13 So Many Times.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "13 So Many Times.mp3"; sourceTree = "<group>"; };
+		A80953E11B3377F000AD064D /* AudioUnitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioUnitViewController.h; sourceTree = "<group>"; };
+		A80953E21B3377F000AD064D /* AudioUnitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioUnitViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,10 +105,13 @@
 				A80953B81B335AAD00AD064D /* SystemSoundServicesViewController.m */,
 				A80953BA1B335AAD00AD064D /* AudioPlayerViewController.h */,
 				A80953BB1B335AAD00AD064D /* AudioPlayerViewController.m */,
+				A80953E11B3377F000AD064D /* AudioUnitViewController.h */,
+				A80953E21B3377F000AD064D /* AudioUnitViewController.m */,
 				A80953BD1B335AAD00AD064D /* Main.storyboard */,
 				A80953C01B335AAD00AD064D /* Images.xcassets */,
 				A80953C21B335AAD00AD064D /* LaunchScreen.xib */,
 				A80953D91B335BB100AD064D /* Cowbell.wav */,
+				A80953DF1B33761700AD064D /* 13 So Many Times.mp3 */,
 				A80953B01B335AAD00AD064D /* Supporting Files */,
 			);
 			path = LyndaAudio;
@@ -217,6 +225,7 @@
 			files = (
 				A80953BF1B335AAD00AD064D /* Main.storyboard in Resources */,
 				A80953C41B335AAD00AD064D /* LaunchScreen.xib in Resources */,
+				A80953E01B33761700AD064D /* 13 So Many Times.mp3 in Resources */,
 				A80953C11B335AAD00AD064D /* Images.xcassets in Resources */,
 				A80953DA1B335BB100AD064D /* Cowbell.wav in Resources */,
 			);
@@ -238,6 +247,7 @@
 			files = (
 				A80953BC1B335AAD00AD064D /* AudioPlayerViewController.m in Sources */,
 				A80953B61B335AAD00AD064D /* AppDelegate.m in Sources */,
+				A80953E31B3377F000AD064D /* AudioUnitViewController.m in Sources */,
 				A80953B91B335AAD00AD064D /* SystemSoundServicesViewController.m in Sources */,
 				A80953B31B335AAD00AD064D /* main.m in Sources */,
 			);

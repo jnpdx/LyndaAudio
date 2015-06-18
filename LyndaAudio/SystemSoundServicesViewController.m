@@ -8,7 +8,7 @@
 
 #import "SystemSoundServicesViewController.h"
 
-#import <AudioToolbox/AudioToolbox.h>
+@import AudioToolbox;
 
 @interface SystemSoundServicesViewController ()
 

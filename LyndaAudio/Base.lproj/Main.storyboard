@@ -16,9 +16,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OiQ-At-0VM">
-                                <rect key="frame" x="261" y="285" width="79" height="30"/>
-                                <state key="normal" title="Play Sound">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OiQ-At-0VM">
+                                <rect key="frame" x="264" y="285" width="74" height="30"/>
+                                <state key="normal" title="Play Audio">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -83,6 +83,37 @@
             </objects>
             <point key="canvasLocation" x="750" y="360"/>
         </scene>
+        <!--Third-->
+        <scene sceneID="Mo7-fo-D5R">
+            <objects>
+                <viewController title="Third" id="6cC-6v-pAF" customClass="AudioUnitViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ixG-Il-6yI"/>
+                        <viewControllerLayoutGuide type="bottom" id="jVe-xw-dfF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="I3e-Sd-sT3">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cd4-ms-nlL">
+                                <rect key="frame" x="263" y="285" width="74" height="30"/>
+                                <state key="normal" title="Play Audio">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="cd4-ms-nlL" secondAttribute="centerY" id="3i2-It-mWY"/>
+                            <constraint firstAttribute="centerX" secondItem="cd4-ms-nlL" secondAttribute="centerX" id="Xer-DU-d77"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Third" id="68M-hf-RJx"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QqL-MU-nib" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="746" y="1026"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
@@ -96,6 +127,7 @@
                     <connections>
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
+                        <segue destination="6cC-6v-pAF" kind="relationship" relationship="viewControllers" id="w4D-FV-RKr"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
