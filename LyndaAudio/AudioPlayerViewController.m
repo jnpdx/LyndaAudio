@@ -6,13 +6,13 @@
 //  Copyright (c) 2015 Lynda.com. All rights reserved.
 //
 
-#import "SecondViewController.h"
+#import "AudioPlayerViewController.h"
 
-@interface SecondViewController ()
+@interface AudioPlayerViewController ()
 
 @end
 
-@implementation SecondViewController
+@implementation AudioPlayerViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -22,6 +22,14 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)playButtonPressed:(id)sender {
+    
+}
+
+- (IBAction)stopButtonPressed:(id)sender {
+    
 }
 
 @end

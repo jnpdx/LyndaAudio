@@ -10,13 +10,14 @@
 		A80953B31B335AAD00AD064D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A80953B21B335AAD00AD064D /* main.m */; };
 		A80953B61B335AAD00AD064D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A80953B51B335AAD00AD064D /* AppDelegate.m */; };
 		A80953B91B335AAD00AD064D /* SystemSoundServicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A80953B81B335AAD00AD064D /* SystemSoundServicesViewController.m */; };
-		A80953BC1B335AAD00AD064D /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A80953BB1B335AAD00AD064D /* SecondViewController.m */; };
+		A80953BC1B335AAD00AD064D /* AudioPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A80953BB1B335AAD00AD064D /* AudioPlayerViewController.m */; };
 		A80953BF1B335AAD00AD064D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A80953BD1B335AAD00AD064D /* Main.storyboard */; };
 		A80953C11B335AAD00AD064D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A80953C01B335AAD00AD064D /* Images.xcassets */; };
 		A80953C41B335AAD00AD064D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A80953C21B335AAD00AD064D /* LaunchScreen.xib */; };
 		A80953D01B335AAD00AD064D /* LyndaAudioTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A80953CF1B335AAD00AD064D /* LyndaAudioTests.m */; };
 		A80953DA1B335BB100AD064D /* Cowbell.wav in Resources */ = {isa = PBXBuildFile; fileRef = A80953D91B335BB100AD064D /* Cowbell.wav */; };
 		A80953DC1B335C1A00AD064D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A80953DB1B335C1A00AD064D /* AudioToolbox.framework */; };
+		A80953DE1B335E1500AD064D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A80953DD1B335E1500AD064D /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,8 +38,8 @@
 		A80953B51B335AAD00AD064D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		A80953B71B335AAD00AD064D /* SystemSoundServicesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SystemSoundServicesViewController.h; sourceTree = "<group>"; };
 		A80953B81B335AAD00AD064D /* SystemSoundServicesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SystemSoundServicesViewController.m; sourceTree = "<group>"; };
-		A80953BA1B335AAD00AD064D /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		A80953BB1B335AAD00AD064D /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		A80953BA1B335AAD00AD064D /* AudioPlayerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioPlayerViewController.h; sourceTree = "<group>"; };
+		A80953BB1B335AAD00AD064D /* AudioPlayerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioPlayerViewController.m; sourceTree = "<group>"; };
 		A80953BE1B335AAD00AD064D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A80953C01B335AAD00AD064D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A80953C31B335AAD00AD064D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -47,6 +48,7 @@
 		A80953CF1B335AAD00AD064D /* LyndaAudioTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LyndaAudioTests.m; sourceTree = "<group>"; };
 		A80953D91B335BB100AD064D /* Cowbell.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Cowbell.wav; sourceTree = "<group>"; };
 		A80953DB1B335C1A00AD064D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		A80953DD1B335E1500AD064D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A80953DE1B335E1500AD064D /* AVFoundation.framework in Frameworks */,
 				A80953DC1B335C1A00AD064D /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -71,6 +74,7 @@
 		A80953A41B335AAD00AD064D = {
 			isa = PBXGroup;
 			children = (
+				A80953DD1B335E1500AD064D /* AVFoundation.framework */,
 				A80953DB1B335C1A00AD064D /* AudioToolbox.framework */,
 				A80953AF1B335AAD00AD064D /* LyndaAudio */,
 				A80953CC1B335AAD00AD064D /* LyndaAudioTests */,
@@ -94,8 +98,8 @@
 				A80953B51B335AAD00AD064D /* AppDelegate.m */,
 				A80953B71B335AAD00AD064D /* SystemSoundServicesViewController.h */,
 				A80953B81B335AAD00AD064D /* SystemSoundServicesViewController.m */,
-				A80953BA1B335AAD00AD064D /* SecondViewController.h */,
-				A80953BB1B335AAD00AD064D /* SecondViewController.m */,
+				A80953BA1B335AAD00AD064D /* AudioPlayerViewController.h */,
+				A80953BB1B335AAD00AD064D /* AudioPlayerViewController.m */,
 				A80953BD1B335AAD00AD064D /* Main.storyboard */,
 				A80953C01B335AAD00AD064D /* Images.xcassets */,
 				A80953C21B335AAD00AD064D /* LaunchScreen.xib */,
@@ -232,7 +236,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A80953BC1B335AAD00AD064D /* SecondViewController.m in Sources */,
+				A80953BC1B335AAD00AD064D /* AudioPlayerViewController.m in Sources */,
 				A80953B61B335AAD00AD064D /* AppDelegate.m in Sources */,
 				A80953B91B335AAD00AD064D /* SystemSoundServicesViewController.m in Sources */,
 				A80953B31B335AAD00AD064D /* main.m in Sources */,

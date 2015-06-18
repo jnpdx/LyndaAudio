@@ -21,9 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSString *soundPath = [[NSBundle mainBundle]
-                           pathForResource:@"Cowbell" ofType:@"wav"];
-    NSURL *soundPathURL = [NSURL fileURLWithPath:soundPath];
+    NSURL *soundPathURL = [[NSBundle mainBundle] URLForResource:@"Cowbell" withExtension:@"wav"];
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)soundPathURL, &_theSoundID);
 }
 
