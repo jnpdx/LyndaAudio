@@ -12,7 +12,7 @@
 
 @interface SystemSoundServicesViewController ()
 
-@property SystemSoundID soundObject;
+@property SystemSoundID theSoundID;
 
 @end
 
@@ -20,7 +20,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    NSString *soundPath = [[NSBundle mainBundle]
+                           pathForResource:@"Cowbell" ofType:@"wav"];
+    NSURL *soundPathURL = [NSURL fileURLWithPath:soundPath];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)soundPathURL, &_theSoundID);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -30,11 +34,11 @@
 
 
 - (IBAction)soundButtonPressed:(id)sender {
-    NSString *soundPath = [[NSBundle mainBundle]
-                            pathForResource:@"Cowbell" ofType:@"wav"];
-    NSURL *soundPathURL = [NSURL fileURLWithPath:soundPath];
-    AudioServicesCreateSystemSoundID((__bridge CFURLRef)soundPathURL, &_soundObject);
-    AudioServicesPlaySystemSound(self.soundObject);
+    AudioServicesPlaySystemSound(self.theSoundID);
+}
+
+- (void)dealloc {
+    AudioServicesDisposeSystemSoundID(self.theSoundID);
 }
 
 @end
