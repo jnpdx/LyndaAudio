@@ -1,0 +1,439 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A80953B31B335AAD00AD064D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A80953B21B335AAD00AD064D /* main.m */; };
+		A80953B61B335AAD00AD064D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A80953B51B335AAD00AD064D /* AppDelegate.m */; };
+		A80953B91B335AAD00AD064D /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A80953B81B335AAD00AD064D /* FirstViewController.m */; };
+		A80953BC1B335AAD00AD064D /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A80953BB1B335AAD00AD064D /* SecondViewController.m */; };
+		A80953BF1B335AAD00AD064D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A80953BD1B335AAD00AD064D /* Main.storyboard */; };
+		A80953C11B335AAD00AD064D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A80953C01B335AAD00AD064D /* Images.xcassets */; };
+		A80953C41B335AAD00AD064D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A80953C21B335AAD00AD064D /* LaunchScreen.xib */; };
+		A80953D01B335AAD00AD064D /* LyndaAudioTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A80953CF1B335AAD00AD064D /* LyndaAudioTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A80953CA1B335AAD00AD064D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A80953A51B335AAD00AD064D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A80953AC1B335AAD00AD064D;
+			remoteInfo = LyndaAudio;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A80953AD1B335AAD00AD064D /* LyndaAudio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LyndaAudio.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A80953B11B335AAD00AD064D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A80953B21B335AAD00AD064D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A80953B41B335AAD00AD064D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		A80953B51B335AAD00AD064D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A80953B71B335AAD00AD064D /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		A80953B81B335AAD00AD064D /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		A80953BA1B335AAD00AD064D /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		A80953BB1B335AAD00AD064D /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		A80953BE1B335AAD00AD064D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A80953C01B335AAD00AD064D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		A80953C31B335AAD00AD064D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		A80953C91B335AAD00AD064D /* LyndaAudioTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LyndaAudioTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A80953CE1B335AAD00AD064D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A80953CF1B335AAD00AD064D /* LyndaAudioTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LyndaAudioTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A80953AA1B335AAD00AD064D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A80953C61B335AAD00AD064D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A80953A41B335AAD00AD064D = {
+			isa = PBXGroup;
+			children = (
+				A80953AF1B335AAD00AD064D /* LyndaAudio */,
+				A80953CC1B335AAD00AD064D /* LyndaAudioTests */,
+				A80953AE1B335AAD00AD064D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A80953AE1B335AAD00AD064D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A80953AD1B335AAD00AD064D /* LyndaAudio.app */,
+				A80953C91B335AAD00AD064D /* LyndaAudioTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A80953AF1B335AAD00AD064D /* LyndaAudio */ = {
+			isa = PBXGroup;
+			children = (
+				A80953B41B335AAD00AD064D /* AppDelegate.h */,
+				A80953B51B335AAD00AD064D /* AppDelegate.m */,
+				A80953B71B335AAD00AD064D /* FirstViewController.h */,
+				A80953B81B335AAD00AD064D /* FirstViewController.m */,
+				A80953BA1B335AAD00AD064D /* SecondViewController.h */,
+				A80953BB1B335AAD00AD064D /* SecondViewController.m */,
+				A80953BD1B335AAD00AD064D /* Main.storyboard */,
+				A80953C01B335AAD00AD064D /* Images.xcassets */,
+				A80953C21B335AAD00AD064D /* LaunchScreen.xib */,
+				A80953B01B335AAD00AD064D /* Supporting Files */,
+			);
+			path = LyndaAudio;
+			sourceTree = "<group>";
+		};
+		A80953B01B335AAD00AD064D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A80953B11B335AAD00AD064D /* Info.plist */,
+				A80953B21B335AAD00AD064D /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A80953CC1B335AAD00AD064D /* LyndaAudioTests */ = {
+			isa = PBXGroup;
+			children = (
+				A80953CF1B335AAD00AD064D /* LyndaAudioTests.m */,
+				A80953CD1B335AAD00AD064D /* Supporting Files */,
+			);
+			path = LyndaAudioTests;
+			sourceTree = "<group>";
+		};
+		A80953CD1B335AAD00AD064D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A80953CE1B335AAD00AD064D /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A80953AC1B335AAD00AD064D /* LyndaAudio */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A80953D31B335AAD00AD064D /* Build configuration list for PBXNativeTarget "LyndaAudio" */;
+			buildPhases = (
+				A80953A91B335AAD00AD064D /* Sources */,
+				A80953AA1B335AAD00AD064D /* Frameworks */,
+				A80953AB1B335AAD00AD064D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LyndaAudio;
+			productName = LyndaAudio;
+			productReference = A80953AD1B335AAD00AD064D /* LyndaAudio.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A80953C81B335AAD00AD064D /* LyndaAudioTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A80953D61B335AAD00AD064D /* Build configuration list for PBXNativeTarget "LyndaAudioTests" */;
+			buildPhases = (
+				A80953C51B335AAD00AD064D /* Sources */,
+				A80953C61B335AAD00AD064D /* Frameworks */,
+				A80953C71B335AAD00AD064D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A80953CB1B335AAD00AD064D /* PBXTargetDependency */,
+			);
+			name = LyndaAudioTests;
+			productName = LyndaAudioTests;
+			productReference = A80953C91B335AAD00AD064D /* LyndaAudioTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A80953A51B335AAD00AD064D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = Lynda.com;
+				TargetAttributes = {
+					A80953AC1B335AAD00AD064D = {
+						CreatedOnToolsVersion = 6.3.2;
+					};
+					A80953C81B335AAD00AD064D = {
+						CreatedOnToolsVersion = 6.3.2;
+						TestTargetID = A80953AC1B335AAD00AD064D;
+					};
+				};
+			};
+			buildConfigurationList = A80953A81B335AAD00AD064D /* Build configuration list for PBXProject "LyndaAudio" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A80953A41B335AAD00AD064D;
+			productRefGroup = A80953AE1B335AAD00AD064D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A80953AC1B335AAD00AD064D /* LyndaAudio */,
+				A80953C81B335AAD00AD064D /* LyndaAudioTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A80953AB1B335AAD00AD064D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A80953BF1B335AAD00AD064D /* Main.storyboard in Resources */,
+				A80953C41B335AAD00AD064D /* LaunchScreen.xib in Resources */,
+				A80953C11B335AAD00AD064D /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A80953C71B335AAD00AD064D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A80953A91B335AAD00AD064D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A80953BC1B335AAD00AD064D /* SecondViewController.m in Sources */,
+				A80953B61B335AAD00AD064D /* AppDelegate.m in Sources */,
+				A80953B91B335AAD00AD064D /* FirstViewController.m in Sources */,
+				A80953B31B335AAD00AD064D /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A80953C51B335AAD00AD064D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A80953D01B335AAD00AD064D /* LyndaAudioTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A80953CB1B335AAD00AD064D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A80953AC1B335AAD00AD064D /* LyndaAudio */;
+			targetProxy = A80953CA1B335AAD00AD064D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A80953BD1B335AAD00AD064D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A80953BE1B335AAD00AD064D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A80953C21B335AAD00AD064D /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A80953C31B335AAD00AD064D /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A80953D11B335AAD00AD064D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A80953D21B335AAD00AD064D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A80953D41B335AAD00AD064D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = LyndaAudio/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A80953D51B335AAD00AD064D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = LyndaAudio/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		A80953D71B335AAD00AD064D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = LyndaAudioTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LyndaAudio.app/LyndaAudio";
+			};
+			name = Debug;
+		};
+		A80953D81B335AAD00AD064D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = LyndaAudioTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LyndaAudio.app/LyndaAudio";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A80953A81B335AAD00AD064D /* Build configuration list for PBXProject "LyndaAudio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A80953D11B335AAD00AD064D /* Debug */,
+				A80953D21B335AAD00AD064D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A80953D31B335AAD00AD064D /* Build configuration list for PBXNativeTarget "LyndaAudio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A80953D41B335AAD00AD064D /* Debug */,
+				A80953D51B335AAD00AD064D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		A80953D61B335AAD00AD064D /* Build configuration list for PBXNativeTarget "LyndaAudioTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A80953D71B335AAD00AD064D /* Debug */,
+				A80953D81B335AAD00AD064D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A80953A51B335AAD00AD064D /* Project object */;
+}
