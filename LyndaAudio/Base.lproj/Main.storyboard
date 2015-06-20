@@ -100,12 +100,26 @@
                                 <state key="normal" title="Play Audio">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="playButtonPressed:" destination="6cC-6v-pAF" eventType="touchUpInside" id="czk-y8-2Lv"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eeg-gW-uza">
+                                <rect key="frame" x="262" y="323" width="77" height="30"/>
+                                <state key="normal" title="Stop Audio">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="stopButtonPressed:" destination="6cC-6v-pAF" eventType="touchUpInside" id="0M5-Ic-d5k"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="cd4-ms-nlL" secondAttribute="centerY" id="3i2-It-mWY"/>
+                            <constraint firstItem="eeg-gW-uza" firstAttribute="top" secondItem="cd4-ms-nlL" secondAttribute="bottom" constant="8" id="4Zm-vc-VRf"/>
                             <constraint firstAttribute="centerX" secondItem="cd4-ms-nlL" secondAttribute="centerX" id="Xer-DU-d77"/>
+                            <constraint firstItem="eeg-gW-uza" firstAttribute="centerX" secondItem="cd4-ms-nlL" secondAttribute="centerX" constant="0.5" id="YuN-Al-tnB"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Third" id="68M-hf-RJx"/>

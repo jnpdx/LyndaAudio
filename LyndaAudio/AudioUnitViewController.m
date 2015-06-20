@@ -9,6 +9,7 @@
 #import "AudioUnitViewController.h"
 
 @import AudioToolbox;
+@import AVFoundation;
 
 @interface AudioUnitViewController ()
 
@@ -62,6 +63,74 @@ static AudioComponentInstance audioUnit;
                                kOutputBus,
                                &audioFormat,
                                sizeof(audioFormat));
+    
+    if (err != noErr) {
+        //error
+    }
+    
+    
+    //setup the rendering callback
+    AURenderCallbackStruct callbackStruct;
+    callbackStruct.inputProc = playbackCallback;
+    callbackStruct.inputProcRefCon = (__bridge void *)(self);
+    
+    err = AudioUnitSetProperty(audioUnit,
+                                        kAudioUnitProperty_SetRenderCallback,
+                                        kAudioUnitScope_Input,
+                                        kOutputBus,
+                                        &callbackStruct,
+                                        sizeof(callbackStruct));
+    
+    if (err != noErr) {
+        //error
+    }
+    
+    
+    //register for interrupt notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(interruptListener:) name:AVAudioSessionInterruptionNotification object:nil];
+    
+}
+
+- (void) interruptListener:(NSNotification*)notification {
+    //respond to the notification
+}
+
+static OSStatus playbackCallback(void *inRefCon,
+                                 AudioUnitRenderActionFlags *ioActionFlags,
+                                 const AudioTimeStamp *inTimeStamp,
+                                 UInt32 inBusNumber,
+                                 UInt32 inNumberFrames,
+                                 AudioBufferList *ioData) {
+    
+    
+    for (int i = 0 ; i < ioData->mNumberBuffers; i++){
+        
+        
+        AudioBuffer buffer = ioData->mBuffers[i];
+        UInt32 *frameBuffer = buffer.mData;
+        
+        //fill the buffer
+        for (int k = 0; k < inNumberFrames; k++) {
+         
+            frameBuffer[k] = arc4random_uniform(UINT32_MAX);
+            
+        }
+    }
+    
+    
+    return noErr;
+}
+
+- (IBAction)playButtonPressed:(id)sender {
+    AudioOutputUnitStart(audioUnit);
+}
+
+- (IBAction)stopButtonPressed:(id)sender {
+    AudioOutputUnitStop(audioUnit);
+}
+
+- (void) dealloc {
+    //TOOD: dispose of the audio unit / resources
 }
 
 - (void)didReceiveMemoryWarning {
