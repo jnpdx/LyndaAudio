@@ -95,6 +95,9 @@ static AudioComponentInstance audioUnit;
     //respond to the notification
 }
 
+static double theta = 0;
+static float frequency = 440.0;
+
 static OSStatus playbackCallback(void *inRefCon,
                                  AudioUnitRenderActionFlags *ioActionFlags,
                                  const AudioTimeStamp *inTimeStamp,
@@ -102,6 +105,9 @@ static OSStatus playbackCallback(void *inRefCon,
                                  UInt32 inNumberFrames,
                                  AudioBufferList *ioData) {
     
+    const double amplitude = 0.5;
+    const int sampleRate = 44100;
+    const double increment = 2.0 * M_PI * frequency / sampleRate;
     
     for (int i = 0 ; i < ioData->mNumberBuffers; i++){
         
@@ -110,12 +116,57 @@ static OSStatus playbackCallback(void *inRefCon,
         UInt32 *frameBuffer = buffer.mData;
         
         //fill the buffer
-        for (int k = 0; k < inNumberFrames; k++) {
+        for (UInt32 frame = 0; frame < inNumberFrames; frame++) {
          
-            frameBuffer[k] = arc4random_uniform(UINT32_MAX);
+            double sinValueInRadians = sin(theta);
             
+            SInt16 val = sinValueInRadians / (2.0 * M_PI) * SHRT_MAX * amplitude;
+            
+            SInt16 newFrameInMemory[2] = {val, val};
+            
+            UInt32 newFrame32 = *((UInt32*)&newFrameInMemory);
+            
+            //convert that into an SInt16
+            
+            //frameBuffer[frame] = arc4random_uniform(UINT32_MAX);
+
+            frameBuffer[frame] = newFrame32;
+            
+            
+            theta += increment;
+            if (theta > 2.0 * M_PI)
+            {
+                theta -= 2.0 * M_PI;
+            }
         }
     }
+    
+    /*
+    const double amplitude = 0.25;
+    
+    // Get the tone parameters out of the view controller
+    ToneGeneratorViewController *viewController =
+    (ToneGeneratorViewController *)inRefCon;
+    double theta = viewController->theta;
+    double theta_increment =
+    2.0 * M_PI * viewController->frequency / viewController->sampleRate;
+    
+    // This is a mono tone generator so we only need the first buffer
+    const int channel = 0;
+    Float32 *buffer = (Float32 *)ioData->mBuffers[channel].mData;
+    
+    // Generate the samples
+    for (UInt32 frame = 0; frame < inNumberFrames; frame++)
+    {
+        buffer[frame] = sin(theta) * amplitude;
+        
+        theta += theta_increment;
+        if (theta > 2.0 * M_PI)
+        {
+            theta -= 2.0 * M_PI;
+        }
+    }
+    */
     
     
     return noErr;
@@ -130,7 +181,10 @@ static OSStatus playbackCallback(void *inRefCon,
 }
 
 - (void) dealloc {
-    //TOOD: dispose of the audio unit / resources
+    OSStatus err = AudioComponentInstanceDispose(audioUnit);
+    if (err != noErr) {
+        //error
+    }
 }
 
 - (void)didReceiveMemoryWarning {
