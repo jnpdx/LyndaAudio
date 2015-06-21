@@ -26,11 +26,20 @@
                                     <action selector="soundButtonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="wOG-dV-CNh"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="System Sound Services" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ccp-UL-lDK">
+                                <rect key="frame" x="16" y="28" width="568" height="32"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="OiQ-At-0VM" secondAttribute="centerX" id="6no-cA-lMg"/>
+                            <constraint firstItem="ccp-UL-lDK" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" id="9AO-9M-jtL"/>
                             <constraint firstAttribute="centerY" secondItem="OiQ-At-0VM" secondAttribute="centerY" id="Ebt-a1-3Ra"/>
+                            <constraint firstItem="ccp-UL-lDK" firstAttribute="trailing" secondItem="tsR-hK-woN" secondAttribute="trailingMargin" id="gNN-I9-ctX"/>
+                            <constraint firstItem="ccp-UL-lDK" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" constant="8" id="xUb-c3-51d"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="First" image="first" id="acW-dT-cKf"/>
@@ -69,11 +78,20 @@
                                     <action selector="stopButtonPressed:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="mXf-i0-Hmx"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AVAudioPlayer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MPj-w1-1Qh">
+                                <rect key="frame" x="16" y="20" width="568" height="32"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="Rg9-8Y-gCR" secondAttribute="centerY" id="3ck-9c-xKr"/>
+                            <constraint firstItem="MPj-w1-1Qh" firstAttribute="centerX" secondItem="Rg9-8Y-gCR" secondAttribute="centerX" id="40Z-Pl-xbl"/>
                             <constraint firstItem="x99-oO-nFk" firstAttribute="top" secondItem="Rg9-8Y-gCR" secondAttribute="bottom" constant="8" id="C9V-Qc-4dq"/>
+                            <constraint firstItem="MPj-w1-1Qh" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" id="kIv-UI-gtR"/>
+                            <constraint firstItem="MPj-w1-1Qh" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" id="nGK-v6-zmQ"/>
                             <constraint firstAttribute="centerX" secondItem="Rg9-8Y-gCR" secondAttribute="centerX" id="oQV-Iq-kkg"/>
                             <constraint firstItem="x99-oO-nFk" firstAttribute="centerX" secondItem="Rg9-8Y-gCR" secondAttribute="centerX" constant="0.5" id="pZc-qe-E0R"/>
                         </constraints>
@@ -120,6 +138,12 @@
                                     <action selector="sliderMoved:" destination="6cC-6v-pAF" eventType="valueChanged" id="Jgq-JW-tqw"/>
                                 </connections>
                             </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AudioUnit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfd-SE-wBT">
+                                <rect key="frame" x="16" y="20" width="568" height="32"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -130,6 +154,9 @@
                             <constraint firstAttribute="centerX" secondItem="cd4-ms-nlL" secondAttribute="centerX" id="Xer-DU-d77"/>
                             <constraint firstItem="eeg-gW-uza" firstAttribute="centerX" secondItem="cd4-ms-nlL" secondAttribute="centerX" constant="0.5" id="YuN-Al-tnB"/>
                             <constraint firstItem="cd4-ms-nlL" firstAttribute="top" secondItem="ddg-ig-gm6" secondAttribute="bottom" constant="8" id="bYH-Cf-Uh3"/>
+                            <constraint firstItem="kfd-SE-wBT" firstAttribute="trailing" secondItem="ddg-ig-gm6" secondAttribute="trailing" id="bo0-ip-dlw"/>
+                            <constraint firstItem="kfd-SE-wBT" firstAttribute="leading" secondItem="ddg-ig-gm6" secondAttribute="leading" id="cav-sc-tfn"/>
+                            <constraint firstItem="kfd-SE-wBT" firstAttribute="top" secondItem="ixG-Il-6yI" secondAttribute="bottom" id="sUX-cP-bpN"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Third" id="68M-hf-RJx"/>
