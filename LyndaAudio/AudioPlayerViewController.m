@@ -38,7 +38,7 @@
     }
     
     //load up the audio
-    NSURL *soundURL = [[NSBundle mainBundle] URLForResource:@"13 So Many Times" withExtension:@"mp3"];
+    NSURL *soundURL = [[NSBundle mainBundle] URLForResource:@"SoManyTimes" withExtension:@"mp3"];
     self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundURL error:&error];
     if (error != nil) {
         //error
