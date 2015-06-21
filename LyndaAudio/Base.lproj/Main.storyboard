@@ -17,8 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OiQ-At-0VM">
-                                <rect key="frame" x="264" y="285" width="74" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OiQ-At-0VM">
+                                <rect key="frame" x="263" y="285" width="74" height="30"/>
                                 <state key="normal" title="Play Audio">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -84,12 +84,21 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="K3K-9M-D09">
+                                <rect key="frame" x="14" y="247" width="572" height="31"/>
+                                <connections>
+                                    <action selector="rateSliderChanged:" destination="8rJ-Kc-sve" eventType="valueChanged" id="Juy-Yt-Dxx"/>
+                                </connections>
+                            </slider>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="Rg9-8Y-gCR" secondAttribute="centerY" id="3ck-9c-xKr"/>
                             <constraint firstItem="MPj-w1-1Qh" firstAttribute="centerX" secondItem="Rg9-8Y-gCR" secondAttribute="centerX" id="40Z-Pl-xbl"/>
                             <constraint firstItem="x99-oO-nFk" firstAttribute="top" secondItem="Rg9-8Y-gCR" secondAttribute="bottom" constant="8" id="C9V-Qc-4dq"/>
+                            <constraint firstItem="K3K-9M-D09" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" id="IDB-u9-o2G"/>
+                            <constraint firstItem="K3K-9M-D09" firstAttribute="trailing" secondItem="QS5-Rx-YEW" secondAttribute="trailingMargin" id="T3o-g8-9CU"/>
+                            <constraint firstItem="Rg9-8Y-gCR" firstAttribute="top" secondItem="K3K-9M-D09" secondAttribute="bottom" constant="8" id="bDK-ef-Gdc"/>
                             <constraint firstItem="MPj-w1-1Qh" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" id="kIv-UI-gtR"/>
                             <constraint firstItem="MPj-w1-1Qh" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" id="nGK-v6-zmQ"/>
                             <constraint firstAttribute="centerX" secondItem="Rg9-8Y-gCR" secondAttribute="centerX" id="oQV-Iq-kkg"/>
@@ -97,6 +106,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Second" image="second" id="cPa-gy-q4n"/>
+                    <connections>
+                        <outlet property="rateSlider" destination="K3K-9M-D09" id="hae-9Y-blp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>

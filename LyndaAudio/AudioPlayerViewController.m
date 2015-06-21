@@ -12,6 +12,7 @@
 
 @interface AudioPlayerViewController ()
 
+@property (weak, nonatomic) IBOutlet UISlider *rateSlider;
 @property (strong, nonatomic) AVAudioPlayer *audioPlayer;
 
 @end
@@ -42,6 +43,7 @@
     if (error != nil) {
         //error
     } else {
+        [self.audioPlayer setVolume:self.rateSlider.value];
         [self.audioPlayer prepareToPlay];
     }
 }
@@ -49,6 +51,10 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)rateSliderChanged:(UISlider*)sender {
+    [self.audioPlayer setVolume:self.rateSlider.value];
 }
 
 - (IBAction)playButtonPressed:(id)sender {
