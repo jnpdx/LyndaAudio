@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--First-->
@@ -113,13 +114,22 @@
                                     <action selector="stopButtonPressed:" destination="6cC-6v-pAF" eventType="touchUpInside" id="0M5-Ic-d5k"/>
                                 </connections>
                             </button>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="440" minValue="220" maxValue="880" translatesAutoresizingMaskIntoConstraints="NO" id="ddg-ig-gm6">
+                                <rect key="frame" x="14" y="247" width="572" height="31"/>
+                                <connections>
+                                    <action selector="sliderMoved:" destination="6cC-6v-pAF" eventType="valueChanged" id="Jgq-JW-tqw"/>
+                                </connections>
+                            </slider>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="cd4-ms-nlL" secondAttribute="centerY" id="3i2-It-mWY"/>
                             <constraint firstItem="eeg-gW-uza" firstAttribute="top" secondItem="cd4-ms-nlL" secondAttribute="bottom" constant="8" id="4Zm-vc-VRf"/>
+                            <constraint firstItem="ddg-ig-gm6" firstAttribute="leading" secondItem="I3e-Sd-sT3" secondAttribute="leadingMargin" id="DT3-Kg-0Os"/>
+                            <constraint firstItem="ddg-ig-gm6" firstAttribute="trailing" secondItem="I3e-Sd-sT3" secondAttribute="trailingMargin" id="Wdq-Q2-2Ek"/>
                             <constraint firstAttribute="centerX" secondItem="cd4-ms-nlL" secondAttribute="centerX" id="Xer-DU-d77"/>
                             <constraint firstItem="eeg-gW-uza" firstAttribute="centerX" secondItem="cd4-ms-nlL" secondAttribute="centerX" constant="0.5" id="YuN-Al-tnB"/>
+                            <constraint firstItem="cd4-ms-nlL" firstAttribute="top" secondItem="ddg-ig-gm6" secondAttribute="bottom" constant="8" id="bYH-Cf-Uh3"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Third" id="68M-hf-RJx"/>

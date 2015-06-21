@@ -172,6 +172,10 @@ static OSStatus playbackCallback(void *inRefCon,
     return noErr;
 }
 
+- (IBAction)sliderMoved:(UISlider*)sender {
+    frequency = sender.value;
+}
+
 - (IBAction)playButtonPressed:(id)sender {
     AudioOutputUnitStart(audioUnit);
 }
