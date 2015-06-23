@@ -5,7 +5,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--First-->
+        <!--System Sound-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
                 <viewController id="9pv-A4-QxB" customClass="SystemSoundServicesViewController" sceneMemberID="viewController">
@@ -42,13 +42,13 @@
                             <constraint firstItem="ccp-UL-lDK" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" constant="8" id="xUb-c3-51d"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="First" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="System Sound" image="first" id="acW-dT-cKf"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="750" y="-320"/>
         </scene>
-        <!--Second-->
+        <!--AVAudioPlayer-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
                 <viewController id="8rJ-Kc-sve" customClass="AudioPlayerViewController" sceneMemberID="viewController">
@@ -105,7 +105,7 @@
                             <constraint firstItem="x99-oO-nFk" firstAttribute="centerX" secondItem="Rg9-8Y-gCR" secondAttribute="centerX" constant="0.5" id="pZc-qe-E0R"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Second" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="AVAudioPlayer" image="second" id="cPa-gy-q4n"/>
                     <connections>
                         <outlet property="rateSlider" destination="K3K-9M-D09" id="hae-9Y-blp"/>
                     </connections>
@@ -113,6 +113,51 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="750" y="360"/>
+        </scene>
+        <!--AVAudioRecorder-->
+        <scene sceneID="he4-gh-b4G">
+            <objects>
+                <viewController id="7C5-B2-lgF" customClass="AudioRecorderViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="G3K-XU-ddj"/>
+                        <viewControllerLayoutGuide type="bottom" id="nYS-44-gXa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="WoW-Ad-sMJ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PhQ-kh-FQZ">
+                                <rect key="frame" x="253" y="285" width="94" height="30"/>
+                                <state key="normal" title="Record Audio">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="recordButtonPressed:" destination="7C5-B2-lgF" eventType="touchUpInside" id="PQk-f9-iim"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gaU-oq-lzl">
+                                <rect key="frame" x="228" y="323" width="145" height="30"/>
+                                <state key="normal" title="Play Recorded Audio">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="playButtonPressed:" destination="7C5-B2-lgF" eventType="touchUpInside" id="RUZ-7e-2v8"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="PhQ-kh-FQZ" firstAttribute="centerX" secondItem="gaU-oq-lzl" secondAttribute="centerX" constant="-0.5" id="8Ch-8j-NSe"/>
+                            <constraint firstAttribute="centerY" secondItem="PhQ-kh-FQZ" secondAttribute="centerY" id="WPs-yP-PLm"/>
+                            <constraint firstAttribute="centerX" secondItem="PhQ-kh-FQZ" secondAttribute="centerX" id="Zyw-Gf-QNK"/>
+                            <constraint firstItem="gaU-oq-lzl" firstAttribute="top" secondItem="PhQ-kh-FQZ" secondAttribute="bottom" constant="8" id="cYp-OG-h3f"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="AVAudioRecorder" id="Nx8-Zl-mxL"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dsm-dF-NtL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1437" y="360"/>
         </scene>
         <!--Third-->
         <scene sceneID="Mo7-fo-D5R">
@@ -171,7 +216,7 @@
                             <constraint firstItem="kfd-SE-wBT" firstAttribute="top" secondItem="ixG-Il-6yI" secondAttribute="bottom" id="sUX-cP-bpN"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Third" id="68M-hf-RJx"/>
+                    <tabBarItem key="tabBarItem" title="AudioUnit" id="68M-hf-RJx"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QqL-MU-nib" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -190,6 +235,7 @@
                     <connections>
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
+                        <segue destination="7C5-B2-lgF" kind="relationship" relationship="viewControllers" id="Afg-ez-5TE"/>
                         <segue destination="6cC-6v-pAF" kind="relationship" relationship="viewControllers" id="w4D-FV-RKr"/>
                     </connections>
                 </tabBarController>

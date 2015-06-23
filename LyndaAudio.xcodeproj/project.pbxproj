@@ -20,6 +20,7 @@
 		A80953DE1B335E1500AD064D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A80953DD1B335E1500AD064D /* AVFoundation.framework */; };
 		A80953E01B33761700AD064D /* SoManyTimes.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A80953DF1B33761700AD064D /* SoManyTimes.mp3 */; };
 		A80953E31B3377F000AD064D /* AudioUnitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A80953E21B3377F000AD064D /* AudioUnitViewController.m */; };
+		A8A9B5631B3A091C0034D84E /* AudioRecorderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8A9B5621B3A091C0034D84E /* AudioRecorderViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,8 @@
 		A80953DF1B33761700AD064D /* SoManyTimes.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = SoManyTimes.mp3; sourceTree = "<group>"; };
 		A80953E11B3377F000AD064D /* AudioUnitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioUnitViewController.h; sourceTree = "<group>"; };
 		A80953E21B3377F000AD064D /* AudioUnitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioUnitViewController.m; sourceTree = "<group>"; };
+		A8A9B5611B3A091C0034D84E /* AudioRecorderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioRecorderViewController.h; sourceTree = "<group>"; };
+		A8A9B5621B3A091C0034D84E /* AudioRecorderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioRecorderViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,19 +102,20 @@
 		A80953AF1B335AAD00AD064D /* LyndaAudio */ = {
 			isa = PBXGroup;
 			children = (
+				A80953BD1B335AAD00AD064D /* Main.storyboard */,
 				A80953B41B335AAD00AD064D /* AppDelegate.h */,
 				A80953B51B335AAD00AD064D /* AppDelegate.m */,
 				A80953B71B335AAD00AD064D /* SystemSoundServicesViewController.h */,
 				A80953B81B335AAD00AD064D /* SystemSoundServicesViewController.m */,
 				A80953BA1B335AAD00AD064D /* AudioPlayerViewController.h */,
 				A80953BB1B335AAD00AD064D /* AudioPlayerViewController.m */,
+				A8A9B5611B3A091C0034D84E /* AudioRecorderViewController.h */,
+				A8A9B5621B3A091C0034D84E /* AudioRecorderViewController.m */,
 				A80953E11B3377F000AD064D /* AudioUnitViewController.h */,
 				A80953E21B3377F000AD064D /* AudioUnitViewController.m */,
-				A80953BD1B335AAD00AD064D /* Main.storyboard */,
 				A80953C01B335AAD00AD064D /* Images.xcassets */,
 				A80953C21B335AAD00AD064D /* LaunchScreen.xib */,
-				A80953D91B335BB100AD064D /* Cowbell.wav */,
-				A80953DF1B33761700AD064D /* SoManyTimes.mp3 */,
+				A8A9B5641B3A09290034D84E /* Audio Files */,
 				A80953B01B335AAD00AD064D /* Supporting Files */,
 			);
 			path = LyndaAudio;
@@ -141,6 +145,15 @@
 				A80953CE1B335AAD00AD064D /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A8A9B5641B3A09290034D84E /* Audio Files */ = {
+			isa = PBXGroup;
+			children = (
+				A80953D91B335BB100AD064D /* Cowbell.wav */,
+				A80953DF1B33761700AD064D /* SoManyTimes.mp3 */,
+			);
+			name = "Audio Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -248,6 +261,7 @@
 				A80953BC1B335AAD00AD064D /* AudioPlayerViewController.m in Sources */,
 				A80953B61B335AAD00AD064D /* AppDelegate.m in Sources */,
 				A80953E31B3377F000AD064D /* AudioUnitViewController.m in Sources */,
+				A8A9B5631B3A091C0034D84E /* AudioRecorderViewController.m in Sources */,
 				A80953B91B335AAD00AD064D /* SystemSoundServicesViewController.m in Sources */,
 				A80953B31B335AAD00AD064D /* main.m in Sources */,
 			);
@@ -446,6 +460,7 @@
 				A80953D51B335AAD00AD064D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A80953D61B335AAD00AD064D /* Build configuration list for PBXNativeTarget "LyndaAudioTests" */ = {
 			isa = XCConfigurationList;
@@ -454,6 +469,7 @@
 				A80953D81B335AAD00AD064D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
