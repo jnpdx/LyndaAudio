@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AudioRecorderViewController : UIViewController
+@import AVFoundation;
+
+@interface AudioRecorderViewController : UIViewController <AVAudioRecorderDelegate,AVAudioPlayerDelegate>
 
 @end

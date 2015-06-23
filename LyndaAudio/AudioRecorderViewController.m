@@ -16,6 +16,10 @@
 @property (nonatomic,strong) AVAudioRecorder *audioRecorder;
 @property (nonatomic,strong) AVAudioPlayer *audioPlayer;
 
+@property (nonatomic,weak) IBOutlet UILabel *statusLabel;
+@property (nonatomic,weak) IBOutlet UIButton *recordButton;
+@property (nonatomic,weak) IBOutlet UIButton *playButton;
+
 @end
 
 @implementation AudioRecorderViewController
@@ -43,6 +47,28 @@
     if (error != nil) {
         //error
     }
+    self.audioRecorder.delegate = self;
+}
+
+- (void)audioRecorderDidFinishRecording:(AVAudioRecorder *)recorder successfully:(BOOL)flag
+{
+    self.statusLabel.text = @"";
+    [self enableButtons];
+}
+
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag {
+    self.statusLabel.text = @"";
+    [self enableButtons];
+}
+
+- (void) enableButtons {
+    [self.recordButton setEnabled:YES];
+    [self.playButton setEnabled:YES];
+}
+
+- (void) disableButtons {
+    [self.recordButton setEnabled:NO];
+    [self.playButton setEnabled:NO];
 }
 
 - (IBAction)recordButtonPressed:(id)sender {
@@ -66,6 +92,8 @@
     if (!recorded) {
         NSLog(@"Error");
     }
+    self.statusLabel.text = @"Recording for 10 sec...";
+    [self disableButtons];
 }
 
 - (IBAction)playButtonPressed:(id)sender {
@@ -92,7 +120,10 @@
         //error
     }
     
+    self.audioPlayer.delegate = self;
     [self.audioPlayer play];
+    self.statusLabel.text = @"Playing...";
+    [self disableButtons];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -144,16 +144,29 @@
                                     <action selector="playButtonPressed:" destination="7C5-B2-lgF" eventType="touchUpInside" id="RUZ-7e-2v8"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XTD-VV-n8A">
+                                <rect key="frame" x="279" y="256" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="PhQ-kh-FQZ" firstAttribute="centerX" secondItem="gaU-oq-lzl" secondAttribute="centerX" constant="-0.5" id="8Ch-8j-NSe"/>
                             <constraint firstAttribute="centerY" secondItem="PhQ-kh-FQZ" secondAttribute="centerY" id="WPs-yP-PLm"/>
+                            <constraint firstItem="PhQ-kh-FQZ" firstAttribute="top" secondItem="XTD-VV-n8A" secondAttribute="bottom" constant="8" id="YFN-w6-kLA"/>
                             <constraint firstAttribute="centerX" secondItem="PhQ-kh-FQZ" secondAttribute="centerX" id="Zyw-Gf-QNK"/>
                             <constraint firstItem="gaU-oq-lzl" firstAttribute="top" secondItem="PhQ-kh-FQZ" secondAttribute="bottom" constant="8" id="cYp-OG-h3f"/>
+                            <constraint firstItem="XTD-VV-n8A" firstAttribute="centerX" secondItem="PhQ-kh-FQZ" secondAttribute="centerX" id="dhq-QA-ug5"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="AVAudioRecorder" id="Nx8-Zl-mxL"/>
+                    <connections>
+                        <outlet property="playButton" destination="gaU-oq-lzl" id="YU3-ae-XeX"/>
+                        <outlet property="recordButton" destination="PhQ-kh-FQZ" id="6BV-Ym-aKQ"/>
+                        <outlet property="statusLabel" destination="XTD-VV-n8A" id="lln-pq-hnV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dsm-dF-NtL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
