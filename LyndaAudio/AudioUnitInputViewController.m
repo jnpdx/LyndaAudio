@@ -12,6 +12,8 @@
 
 @interface AudioUnitInputViewController ()
 
+@property (weak,nonatomic) IBOutlet UIView *colorView;
+
 @end
 
 static AudioComponentInstance audioUnit;
@@ -117,15 +119,15 @@ static AudioComponentInstance audioUnit;
         NSLog(@"Error: %i",err);
     }
     
-    // Set output callback
-    callbackStruct.inputProc = playbackCallback;
-    callbackStruct.inputProcRefCon = (__bridge void *)(self);
-    err = AudioUnitSetProperty(audioUnit,
-                                  kAudioUnitProperty_SetRenderCallback,
-                                  kAudioUnitScope_Global,
-                                  kOutputBus,
-                                  &callbackStruct,
-                                  sizeof(callbackStruct));
+//    // Set output callback
+//    callbackStruct.inputProc = playbackCallback;
+//    callbackStruct.inputProcRefCon = (__bridge void *)(self);
+//    err = AudioUnitSetProperty(audioUnit,
+//                                  kAudioUnitProperty_SetRenderCallback,
+//                                  kAudioUnitScope_Global,
+//                                  kOutputBus,
+//                                  &callbackStruct,
+//                                  sizeof(callbackStruct));
     if (err != noErr) {
         NSLog(@"Error: %i",err);
     }
@@ -175,10 +177,21 @@ static OSStatus recordingCallback(void *inRefCon,
     }
     
     SInt16 *frameBuffer = buffer.mData;
+    
+    UInt32 totalAmplitude = 0;
+    
     for (int i = 0; i < inNumberFrames; i++) {
         //loop through the buffer
-        printf("%i",frameBuffer[i]);
+        //printf("%i",frameBuffer[i]);
+        totalAmplitude += abs(frameBuffer[i]);
     }
+    totalAmplitude /= inNumberFrames;
+    
+    float alphaFloat = (float)totalAmplitude / (float)SHRT_MAX * 2;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        ((__bridge AudioUnitInputViewController*)inRefCon).colorView.backgroundColor = [UIColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:alphaFloat];
+    });
     
     // Now, we have the samples we just read sitting in buffers in bufferList
     //DoStuffWithTheRecordedAudio(bufferList);
@@ -194,7 +207,7 @@ static OSStatus playbackCallback(void *inRefCon,
     // Notes: ioData contains buffers (may be more than one!)
     // Fill them up as much as you can. Remember to set the size value in each buffer to match how
     // much data is in the buffer.
-    printf("Here");
+    //printf("Here");
     return noErr;
 }
 
@@ -224,6 +237,7 @@ static OSStatus playbackCallback(void *inRefCon,
     if (err != noErr) {
         //error
     }
+    self.colorView.backgroundColor = [UIColor clearColor];
 }
 
 - (void)didReceiveMemoryWarning {

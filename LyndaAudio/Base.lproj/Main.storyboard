@@ -194,24 +194,35 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZS9-Rd-4RW">
-                                <rect key="frame" x="277" y="323" width="46" height="30"/>
-                                <state key="normal" title="Button">
+                                <rect key="frame" x="284" y="323" width="33" height="30"/>
+                                <state key="normal" title="Stop">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="stopButtonPressed:" destination="QeK-sy-sXE" eventType="touchUpInside" id="JFG-cH-Bj8"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bcx-Mw-YTV">
+                                <rect key="frame" x="16" y="28" width="568" height="249"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Bcx-Mw-YTV" firstAttribute="leading" secondItem="ubq-Iq-407" secondAttribute="leadingMargin" id="7C6-cb-1Sv"/>
                             <constraint firstAttribute="centerY" secondItem="ykq-P0-Fb7" secondAttribute="centerY" id="8bE-5Z-BYN"/>
+                            <constraint firstItem="ykq-P0-Fb7" firstAttribute="top" secondItem="Bcx-Mw-YTV" secondAttribute="bottom" constant="8" id="Ezl-15-xd4"/>
+                            <constraint firstItem="Bcx-Mw-YTV" firstAttribute="top" secondItem="DWk-91-2wL" secondAttribute="bottom" constant="8" id="ND7-NK-2UB"/>
+                            <constraint firstItem="Bcx-Mw-YTV" firstAttribute="trailing" secondItem="ubq-Iq-407" secondAttribute="trailingMargin" id="TFG-9V-7ad"/>
                             <constraint firstAttribute="centerX" secondItem="ykq-P0-Fb7" secondAttribute="centerX" id="aOA-uv-lSh"/>
                             <constraint firstItem="ZS9-Rd-4RW" firstAttribute="centerX" secondItem="ykq-P0-Fb7" secondAttribute="centerX" id="h8s-5p-n8d"/>
                             <constraint firstItem="ZS9-Rd-4RW" firstAttribute="top" secondItem="ykq-P0-Fb7" secondAttribute="bottom" constant="8" id="koP-V6-uJ6"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="AU Recorder" id="eqh-fr-n2z"/>
+                    <connections>
+                        <outlet property="colorView" destination="Bcx-Mw-YTV" id="Z07-rX-dO9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DsZ-fT-CPS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
