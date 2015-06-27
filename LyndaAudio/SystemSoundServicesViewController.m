@@ -25,12 +25,6 @@
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)soundPathURL, &_theSoundID);
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
 - (IBAction)soundButtonPressed:(id)sender {
     AudioServicesPlaySystemSound(self.theSoundID);
 }

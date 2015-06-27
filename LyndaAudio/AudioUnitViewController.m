@@ -131,9 +131,7 @@ static OSStatus playbackCallback(void *inRefCon,
             SInt16 newFrameInMemory[2] = {val, val};
             
             UInt32 newFrame32 = *((UInt32*)&newFrameInMemory);
-            
-            //convert that into an SInt16
-            
+                        
             //frameBuffer[frame] = arc4random_uniform(UINT32_MAX);
 
             frameBuffer[frame] = newFrame32;
@@ -146,34 +144,6 @@ static OSStatus playbackCallback(void *inRefCon,
             }
         }
     }
-    
-    /*
-    const double amplitude = 0.25;
-    
-    // Get the tone parameters out of the view controller
-    ToneGeneratorViewController *viewController =
-    (ToneGeneratorViewController *)inRefCon;
-    double theta = viewController->theta;
-    double theta_increment =
-    2.0 * M_PI * viewController->frequency / viewController->sampleRate;
-    
-    // This is a mono tone generator so we only need the first buffer
-    const int channel = 0;
-    Float32 *buffer = (Float32 *)ioData->mBuffers[channel].mData;
-    
-    // Generate the samples
-    for (UInt32 frame = 0; frame < inNumberFrames; frame++)
-    {
-        buffer[frame] = sin(theta) * amplitude;
-        
-        theta += theta_increment;
-        if (theta > 2.0 * M_PI)
-        {
-            theta -= 2.0 * M_PI;
-        }
-    }
-    */
-    
     
     return noErr;
 }
@@ -216,20 +186,5 @@ static OSStatus playbackCallback(void *inRefCon,
         //error
     }
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
