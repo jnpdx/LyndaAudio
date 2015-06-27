@@ -183,11 +183,31 @@ static OSStatus playbackCallback(void *inRefCon,
 }
 
 - (IBAction)playButtonPressed:(id)sender {
+    NSError *error;
+    //set up the audio session
+    [[AVAudioSession sharedInstance] setActive:YES withOptions:0 error:&error];
+    if (error != nil) {
+        //error
+    }
+    
+    //set the category
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&error];
+    if (error != nil) {
+        //error
+    }
+    
     AudioOutputUnitStart(audioUnit);
 }
 
 - (IBAction)stopButtonPressed:(id)sender {
     AudioOutputUnitStop(audioUnit);
+    
+    NSError *error;
+    //set up the audio session
+    [[AVAudioSession sharedInstance] setActive:NO withOptions:0 error:&error];
+    if (error != nil) {
+        //error
+    }
 }
 
 - (void) dealloc {

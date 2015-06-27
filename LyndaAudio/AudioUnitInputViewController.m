@@ -238,6 +238,9 @@ static OSStatus playbackCallback(void *inRefCon,
         //error
     }
     self.colorView.backgroundColor = [UIColor clearColor];
+    
+    NSError *error;
+    [[AVAudioSession sharedInstance] setActive:noErr withOptions:0 error:&error];
 }
 
 - (void)didReceiveMemoryWarning {
