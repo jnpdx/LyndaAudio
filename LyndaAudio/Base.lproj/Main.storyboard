@@ -172,6 +172,51 @@
             </objects>
             <point key="canvasLocation" x="1437" y="360"/>
         </scene>
+        <!--AudioUnit Recorder-->
+        <scene sceneID="Z56-aQ-GO1">
+            <objects>
+                <viewController id="QeK-sy-sXE" userLabel="AudioUnit Recorder" customClass="AudioUnitInputViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DWk-91-2wL"/>
+                        <viewControllerLayoutGuide type="bottom" id="rSQ-KQ-LqJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ubq-Iq-407">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ykq-P0-Fb7">
+                                <rect key="frame" x="253" y="285" width="94" height="30"/>
+                                <state key="normal" title="Record Audio">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="recordButtonPressed:" destination="QeK-sy-sXE" eventType="touchUpInside" id="srm-JF-eJ7"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZS9-Rd-4RW">
+                                <rect key="frame" x="277" y="323" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="stopButtonPressed:" destination="QeK-sy-sXE" eventType="touchUpInside" id="JFG-cH-Bj8"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="ykq-P0-Fb7" secondAttribute="centerY" id="8bE-5Z-BYN"/>
+                            <constraint firstAttribute="centerX" secondItem="ykq-P0-Fb7" secondAttribute="centerX" id="aOA-uv-lSh"/>
+                            <constraint firstItem="ZS9-Rd-4RW" firstAttribute="centerX" secondItem="ykq-P0-Fb7" secondAttribute="centerX" id="h8s-5p-n8d"/>
+                            <constraint firstItem="ZS9-Rd-4RW" firstAttribute="top" secondItem="ykq-P0-Fb7" secondAttribute="bottom" constant="8" id="koP-V6-uJ6"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="AU Recorder" id="eqh-fr-n2z"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DsZ-fT-CPS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1438" y="1022"/>
+        </scene>
         <!--Third-->
         <scene sceneID="Mo7-fo-D5R">
             <objects>
@@ -250,6 +295,7 @@
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
                         <segue destination="7C5-B2-lgF" kind="relationship" relationship="viewControllers" id="Afg-ez-5TE"/>
                         <segue destination="6cC-6v-pAF" kind="relationship" relationship="viewControllers" id="w4D-FV-RKr"/>
+                        <segue destination="QeK-sy-sXE" kind="relationship" relationship="viewControllers" id="Tm0-xj-SPk"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>

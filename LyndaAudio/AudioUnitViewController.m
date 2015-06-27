@@ -26,6 +26,12 @@ static AudioComponentInstance audioUnit;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    [self setupAudio];
+}
+
+- (void) setupAudio {
+#warning Set up the audio session
+    
     OSStatus err;
     
     //set up the audio unit
@@ -37,7 +43,7 @@ static AudioComponentInstance audioUnit;
     desc.componentFlags = 0;
     desc.componentFlagsMask = 0;
     
-
+    
     AudioComponent comp = AudioComponentFindNext(NULL, &desc);
     
     
@@ -75,11 +81,11 @@ static AudioComponentInstance audioUnit;
     callbackStruct.inputProcRefCon = (__bridge void *)(self);
     
     err = AudioUnitSetProperty(audioUnit,
-                                        kAudioUnitProperty_SetRenderCallback,
-                                        kAudioUnitScope_Input,
-                                        kOutputBus,
-                                        &callbackStruct,
-                                        sizeof(callbackStruct));
+                               kAudioUnitProperty_SetRenderCallback,
+                               kAudioUnitScope_Input,
+                               kOutputBus,
+                               &callbackStruct,
+                               sizeof(callbackStruct));
     
     if (err != noErr) {
         //error
