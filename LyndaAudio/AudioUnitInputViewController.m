@@ -193,8 +193,6 @@ static OSStatus recordingCallback(void *inRefCon,
         ((__bridge AudioUnitInputViewController*)inRefCon).colorView.backgroundColor = [UIColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:alphaFloat];
     });
     
-    // Now, we have the samples we just read sitting in buffers in bufferList
-    //DoStuffWithTheRecordedAudio(bufferList);
     return noErr;
 }
 
