@@ -23,34 +23,33 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
+    [self setupAudio];
+}
+
+- (void) setupAudio {
     NSError *error;
     
     //set up the audio session
     [[AVAudioSession sharedInstance] setActive:YES withOptions:0 error:&error];
     if (error != nil) {
-        //error
+        NSAssert(error == nil, @"Error setting audio session to active: %@",error);
     }
     
     //set the category
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&error];
     if (error != nil) {
-        //error
+        NSAssert(error == nil, @"Error setting audio category: %@",error);
     }
     
     //load up the audio
     NSURL *soundURL = [[NSBundle mainBundle] URLForResource:@"SoManyTimes" withExtension:@"mp3"];
     self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundURL error:&error];
     if (error != nil) {
-        //error
+        NSAssert(error == nil, @"Error loading audioPlayer: %@",error);
     } else {
         [self.audioPlayer setVolume:self.rateSlider.value];
         [self.audioPlayer prepareToPlay];
     }
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (IBAction)rateSliderChanged:(UISlider*)sender {
@@ -58,7 +57,8 @@
 }
 
 - (IBAction)playButtonPressed:(id)sender {
-    [self.audioPlayer play];
+    BOOL played = [self.audioPlayer play];
+    NSAssert(played == YES, @"Failed playing");
 }
 
 - (IBAction)stopButtonPressed:(id)sender {

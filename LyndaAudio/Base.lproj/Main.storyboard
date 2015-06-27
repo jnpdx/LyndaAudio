@@ -105,7 +105,7 @@
                             <constraint firstItem="x99-oO-nFk" firstAttribute="centerX" secondItem="Rg9-8Y-gCR" secondAttribute="centerX" constant="0.5" id="pZc-qe-E0R"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="AVAudioPlayer" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="AVAudioPlayer" image="first" id="cPa-gy-q4n"/>
                     <connections>
                         <outlet property="rateSlider" destination="K3K-9M-D09" id="hae-9Y-blp"/>
                     </connections>
@@ -161,7 +161,7 @@
                             <constraint firstItem="XTD-VV-n8A" firstAttribute="centerX" secondItem="PhQ-kh-FQZ" secondAttribute="centerX" id="dhq-QA-ug5"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="AVAudioRecorder" id="Nx8-Zl-mxL"/>
+                    <tabBarItem key="tabBarItem" title="AVAudioRecorder" image="first" id="Nx8-Zl-mxL"/>
                     <connections>
                         <outlet property="playButton" destination="gaU-oq-lzl" id="YU3-ae-XeX"/>
                         <outlet property="recordButton" destination="PhQ-kh-FQZ" id="6BV-Ym-aKQ"/>
@@ -194,8 +194,8 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZS9-Rd-4RW">
-                                <rect key="frame" x="284" y="323" width="33" height="30"/>
-                                <state key="normal" title="Stop">
+                                <rect key="frame" x="246" y="323" width="108" height="30"/>
+                                <state key="normal" title="Stop Recording">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -219,7 +219,7 @@
                             <constraint firstItem="ZS9-Rd-4RW" firstAttribute="top" secondItem="ykq-P0-Fb7" secondAttribute="bottom" constant="8" id="koP-V6-uJ6"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="AU Recorder" id="eqh-fr-n2z"/>
+                    <tabBarItem key="tabBarItem" title="AU Recorder" image="first" id="eqh-fr-n2z"/>
                     <connections>
                         <outlet property="colorView" destination="Bcx-Mw-YTV" id="Z07-rX-dO9"/>
                     </connections>
@@ -285,7 +285,7 @@
                             <constraint firstItem="kfd-SE-wBT" firstAttribute="top" secondItem="ixG-Il-6yI" secondAttribute="bottom" id="sUX-cP-bpN"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="AudioUnit" id="68M-hf-RJx"/>
+                    <tabBarItem key="tabBarItem" title="AU Player" image="first" id="68M-hf-RJx"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QqL-MU-nib" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -316,6 +316,5 @@
     </scenes>
     <resources>
         <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
     </resources>
 </document>
