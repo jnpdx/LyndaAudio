@@ -21,6 +21,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self setupAudio];
+}
+
+- (void) setupAudio {
     NSURL *soundPathURL = [[NSBundle mainBundle] URLForResource:@"Cowbell" withExtension:@"wav"];
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)soundPathURL, &_theSoundID);
 }
