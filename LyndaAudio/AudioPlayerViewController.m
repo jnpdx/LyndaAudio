@@ -27,6 +27,8 @@
 }
 
 - (void) setupAudio {
+    //TODO: register app for background playing?
+    
     NSError *error;
     
     //set up the audio session

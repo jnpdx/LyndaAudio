@@ -26,7 +26,10 @@
 
 - (void) setupAudio {
     NSURL *soundPathURL = [[NSBundle mainBundle] URLForResource:@"Cowbell" withExtension:@"wav"];
-    AudioServicesCreateSystemSoundID((__bridge CFURLRef)soundPathURL, &_theSoundID);
+    OSStatus err = AudioServicesCreateSystemSoundID((__bridge CFURLRef)soundPathURL, &_theSoundID);
+    if (err != noErr) {
+        NSAssert(err == noErr, @"Couldn't create system sound ID");
+    }
 }
 
 - (IBAction)soundButtonPressed:(id)sender {

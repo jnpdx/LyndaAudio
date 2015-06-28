@@ -27,7 +27,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+    [self setupAudio];
+}
+
+- (void) setupAudio {
     NSString *directoryName = NSTemporaryDirectory();
     NSString *generatedFileName =
     [directoryName stringByAppendingPathComponent:@"audioFile.wav"];
@@ -54,6 +57,10 @@
 {
     self.statusLabel.text = @"";
     [self enableButtons];
+}
+
+- (void) audioRecorderEncodeErrorDidOccur:(AVAudioRecorder *)recorder error:(NSError *)error {
+    NSAssert(error == nil, @"Error while recording! %@",error);
 }
 
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag {
