@@ -13,6 +13,9 @@
 
 @interface AudioUnitViewController ()
 
+@property double theta;
+@property float frequency;
+
 @end
 
 @implementation AudioUnitViewController
@@ -26,12 +29,13 @@ static AudioComponentInstance audioUnit;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.theta = 0;
+    self.frequency = 440;
+    
     [self setupAudio];
 }
 
 - (void) setupAudio {
-#warning Set up the audio session
-    
     OSStatus err;
     
     //set up the audio unit
@@ -60,8 +64,9 @@ static AudioComponentInstance audioUnit;
     audioFormat.mFramesPerPacket	= 1;
     audioFormat.mChannelsPerFrame	= 2;
     audioFormat.mBitsPerChannel		= 16;
-    audioFormat.mBytesPerPacket		= 4;
-    audioFormat.mBytesPerFrame		= 4;
+    audioFormat.mBytesPerFrame		= audioFormat.mChannelsPerFrame * sizeof(SInt16);
+    audioFormat.mBytesPerPacket		= audioFormat.mFramesPerPacket * audioFormat.mBytesPerFrame;
+
     
     err = AudioUnitSetProperty(audioUnit,
                                kAudioUnitProperty_StreamFormat,
@@ -91,6 +96,10 @@ static AudioComponentInstance audioUnit;
         //error
     }
     
+    err = AudioUnitInitialize(audioUnit);
+    if (err != noErr) {
+        NSLog(@"Error: %i",err);
+    }
     
     //register for interrupt notifications
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(interruptListener:) name:AVAudioSessionInterruptionNotification object:nil];
@@ -101,8 +110,9 @@ static AudioComponentInstance audioUnit;
     //respond to the notification
 }
 
-static double theta = 0;
-static float frequency = 440.0;
+static const int sampleRate = 44100;
+static const double amplitude = 0.5;
+
 
 static OSStatus playbackCallback(void *inRefCon,
                                  AudioUnitRenderActionFlags *ioActionFlags,
@@ -111,9 +121,11 @@ static OSStatus playbackCallback(void *inRefCon,
                                  UInt32 inNumberFrames,
                                  AudioBufferList *ioData) {
     
-    const double amplitude = 0.5;
-    const int sampleRate = 44100;
-    const double increment = 2.0 * M_PI * frequency / sampleRate;
+    AudioUnitViewController *viewController = ((__bridge AudioUnitViewController*)inRefCon);
+    
+    const double increment = 2.0 * M_PI * viewController.frequency / sampleRate;
+    
+    double theta = viewController.theta;
     
     for (int i = 0 ; i < ioData->mNumberBuffers; i++){
         
@@ -145,11 +157,13 @@ static OSStatus playbackCallback(void *inRefCon,
         }
     }
     
+    viewController.theta = theta;
+    
     return noErr;
 }
 
 - (IBAction)sliderMoved:(UISlider*)sender {
-    frequency = sender.value;
+    self.frequency = sender.value;
 }
 
 - (IBAction)playButtonPressed:(id)sender {
@@ -166,11 +180,17 @@ static OSStatus playbackCallback(void *inRefCon,
         //error
     }
     
-    AudioOutputUnitStart(audioUnit);
+    OSStatus err = AudioOutputUnitStart(audioUnit);
+    if (err != noErr) {
+        //error
+    }
 }
 
 - (IBAction)stopButtonPressed:(id)sender {
-    AudioOutputUnitStop(audioUnit);
+    OSStatus err = AudioOutputUnitStop(audioUnit);
+    if (err != noErr) {
+        //error
+    }
     
     NSError *error;
     //set up the audio session

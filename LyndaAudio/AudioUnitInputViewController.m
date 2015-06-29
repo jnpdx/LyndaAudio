@@ -79,8 +79,8 @@ static AudioComponentInstance audioUnit;
     audioFormat.mFramesPerPacket    = 1;
     audioFormat.mChannelsPerFrame   = 1;
     audioFormat.mBitsPerChannel     = 16;
-    audioFormat.mBytesPerPacket     = 2;
-    audioFormat.mBytesPerFrame      = 2;
+    audioFormat.mBytesPerFrame		= audioFormat.mChannelsPerFrame * sizeof(SInt16);
+    audioFormat.mBytesPerPacket		= audioFormat.mFramesPerPacket * audioFormat.mBytesPerFrame;
     
     
     // Apply format
@@ -146,9 +146,6 @@ static OSStatus recordingCallback(void *inRefCon,
                                   UInt32 inNumberFrames,
                                   AudioBufferList *ioData) {
     
-    // TODO: Use inRefCon to access our interface object to do stuff
-    // Then, use inNumberFrames to figure out how much data is available, and make
-    // that much space available in buffers in an AudioBufferList.
     
     AudioBuffer buffer;
     
@@ -238,7 +235,7 @@ static OSStatus playbackCallback(void *inRefCon,
     self.colorView.backgroundColor = [UIColor clearColor];
     
     NSError *error;
-    [[AVAudioSession sharedInstance] setActive:noErr withOptions:0 error:&error];
+    [[AVAudioSession sharedInstance] setActive:NO withOptions:0 error:&error];
 }
 
 
