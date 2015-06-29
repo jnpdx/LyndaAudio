@@ -22,6 +22,7 @@
 		A80953E31B3377F000AD064D /* AudioUnitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A80953E21B3377F000AD064D /* AudioUnitViewController.m */; };
 		A8A9B5631B3A091C0034D84E /* AudioRecorderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8A9B5621B3A091C0034D84E /* AudioRecorderViewController.m */; };
 		A8A9B5AB1B3F17F10034D84E /* AudioUnitInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8A9B5AA1B3F17F10034D84E /* AudioUnitInputViewController.m */; };
+		A8A9B5B11B41C74E0034D84E /* AudioQueueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8A9B5B01B41C74E0034D84E /* AudioQueueViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,8 @@
 		A8A9B5621B3A091C0034D84E /* AudioRecorderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioRecorderViewController.m; sourceTree = "<group>"; };
 		A8A9B5A91B3F17F10034D84E /* AudioUnitInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioUnitInputViewController.h; sourceTree = "<group>"; };
 		A8A9B5AA1B3F17F10034D84E /* AudioUnitInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioUnitInputViewController.m; sourceTree = "<group>"; };
+		A8A9B5AF1B41C74E0034D84E /* AudioQueueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioQueueViewController.h; sourceTree = "<group>"; };
+		A8A9B5B01B41C74E0034D84E /* AudioQueueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioQueueViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +121,8 @@
 				A80953E21B3377F000AD064D /* AudioUnitViewController.m */,
 				A8A9B5A91B3F17F10034D84E /* AudioUnitInputViewController.h */,
 				A8A9B5AA1B3F17F10034D84E /* AudioUnitInputViewController.m */,
+				A8A9B5AF1B41C74E0034D84E /* AudioQueueViewController.h */,
+				A8A9B5B01B41C74E0034D84E /* AudioQueueViewController.m */,
 				A80953C01B335AAD00AD064D /* Images.xcassets */,
 				A80953C21B335AAD00AD064D /* LaunchScreen.xib */,
 				A8A9B5641B3A09290034D84E /* Audio Files */,
@@ -266,6 +271,7 @@
 				A80953BC1B335AAD00AD064D /* AudioPlayerViewController.m in Sources */,
 				A80953B61B335AAD00AD064D /* AppDelegate.m in Sources */,
 				A80953E31B3377F000AD064D /* AudioUnitViewController.m in Sources */,
+				A8A9B5B11B41C74E0034D84E /* AudioQueueViewController.m in Sources */,
 				A8A9B5631B3A091C0034D84E /* AudioRecorderViewController.m in Sources */,
 				A80953B91B335AAD00AD064D /* SystemSoundServicesViewController.m in Sources */,
 				A80953B31B335AAD00AD064D /* main.m in Sources */,

@@ -8,6 +8,7 @@
 
 #import "AudioUnitInputViewController.h"
 
+@import AudioToolbox;
 @import AVFoundation;
 
 @interface AudioUnitInputViewController ()

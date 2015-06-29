@@ -144,8 +144,8 @@
                                     <action selector="playButtonPressed:" destination="7C5-B2-lgF" eventType="touchUpInside" id="RUZ-7e-2v8"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XTD-VV-n8A">
-                                <rect key="frame" x="279" y="256" width="42" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XTD-VV-n8A">
+                                <rect key="frame" x="300" y="277" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -291,6 +291,48 @@
             </objects>
             <point key="canvasLocation" x="746" y="1026"/>
         </scene>
+        <!--AudioQueue-->
+        <scene sceneID="ZOA-gG-uzB">
+            <objects>
+                <viewController id="dHq-tY-5fc" customClass="AudioQueueViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gKK-lV-FKl"/>
+                        <viewControllerLayoutGuide type="bottom" id="513-Yf-mdB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wP7-h2-i4y">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nb4-Rx-SUt">
+                                <rect key="frame" x="275" y="285" width="50" height="30"/>
+                                <state key="normal" title="Record">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="recordButtonPressed:" destination="dHq-tY-5fc" eventType="touchUpInside" id="AKT-z6-3JF"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ugq-v2-QWd">
+                                <rect key="frame" x="285" y="323" width="30" height="30"/>
+                                <state key="normal" title="Play">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="nb4-Rx-SUt" firstAttribute="centerX" secondItem="Ugq-v2-QWd" secondAttribute="centerX" id="9Om-xF-Fld"/>
+                            <constraint firstItem="Ugq-v2-QWd" firstAttribute="top" secondItem="nb4-Rx-SUt" secondAttribute="bottom" constant="8" id="Z5b-k8-KYx"/>
+                            <constraint firstAttribute="centerX" secondItem="nb4-Rx-SUt" secondAttribute="centerX" id="arM-tt-Qud"/>
+                            <constraint firstAttribute="centerY" secondItem="nb4-Rx-SUt" secondAttribute="centerY" id="dWC-sz-qhs"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="AudioQueue" image="first" id="0ke-xj-OVv"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HRc-jK-LCe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="747" y="1689"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
@@ -307,6 +349,7 @@
                         <segue destination="7C5-B2-lgF" kind="relationship" relationship="viewControllers" id="Afg-ez-5TE"/>
                         <segue destination="6cC-6v-pAF" kind="relationship" relationship="viewControllers" id="w4D-FV-RKr"/>
                         <segue destination="QeK-sy-sXE" kind="relationship" relationship="viewControllers" id="Tm0-xj-SPk"/>
+                        <segue destination="dHq-tY-5fc" kind="relationship" relationship="viewControllers" id="iSh-YR-K5n"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
