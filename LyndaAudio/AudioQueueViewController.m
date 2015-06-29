@@ -10,7 +10,15 @@
 
 @import AudioToolbox;
 
-@interface AudioQueueViewController ()
+typedef NS_ENUM(NSUInteger, AudioQueueState) {
+    AudioQueueState_Idle,
+    AudioQueueState_Recording,
+    AudioQueueState_Playing,
+};
+
+@interface AudioQueueViewController () {
+    AudioQueueState currentState;
+}
 
 @property (nonatomic,strong) NSURL *audioFile;
 
@@ -46,6 +54,7 @@ void AudioOutputCallback(void * inUserData,
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    currentState = AudioQueueState_Idle;
     [self setupAudio];
 }
 
@@ -64,8 +73,21 @@ void AudioOutputCallback(void * inUserData,
 }
 
 - (IBAction) recordButtonPressed:(id)sender {
+    switch (currentState) {
+        case AudioQueueState_Idle:
+            break;
+        case AudioQueueState_Playing:
+            return;
+        case AudioQueueState_Recording:
+            [self stopRecording];
+            return;
+        default:
+            break;
+    }
+    
 #warning set the audio session up
     
+    currentState = AudioQueueState_Recording;
     
     OSStatus err;
     
@@ -94,6 +116,8 @@ void AudioOutputCallback(void * inUserData,
     
     err = AudioQueueStart(queue, NULL);
     NSAssert(err == noErr,@"Error starting audio queue %i",err);
+    
+    NSLog(@"Recording");
 }
 
 - (void) stopRecording {
@@ -105,10 +129,66 @@ void AudioOutputCallback(void * inUserData,
     
     AudioQueueDispose(queue, true);
     AudioFileClose(audioFileID);
+    
+    currentState = AudioQueueState_Idle;
+    
+    NSLog(@"Stopped recording");
+}
+
+- (void) stopPlayback {
+    
+    for(int i = 0; i < NUM_BUFFERS; i++) {
+        AudioQueueFreeBuffer(queue, buffers[i]);
+    }
+    
+    AudioQueueDispose(queue, true);
+    AudioFileClose(audioFileID);
+    
+    currentState = AudioQueueState_Idle;
+    
+    NSLog(@"Stopped playback");
 }
 
 - (IBAction)playButtonPressed:(id)sender {
-    [self stopRecording];
+    switch (currentState) {
+        case AudioQueueState_Idle:
+            break;
+        case AudioQueueState_Playing:
+            [self stopPlayback];
+            return;
+        case AudioQueueState_Recording:
+            [self stopRecording];
+            break;
+        default:
+            break;
+    }
+    
+    currentState = AudioQueueState_Playing;
+    
+    currentPacket = 0;
+    
+    OSStatus err;
+    
+    err = AudioQueueNewOutput(&audioFormat,
+                              AudioOutputCallback,
+                              NULL,
+                              CFRunLoopGetCurrent(),
+                              kCFRunLoopCommonModes,
+                              0,
+                              &queue);
+    
+    NSAssert(err == noErr,@"Error creating output queue %i",err);
+    
+    for (int i = 0; i < NUM_BUFFERS && (currentState == AudioQueueState_Playing); i++) {
+        AudioQueueAllocateBuffer(queue, 16000, &buffers[i]);
+        AudioOutputCallback(NULL, queue, buffers[i]);
+    }
+    
+    err = AudioQueueStart(queue, NULL);
+    
+    NSAssert(err == noErr,@"Error creating starting queue %i",err);
+    
+    NSLog(@"Playing");
 }
 
 @end
