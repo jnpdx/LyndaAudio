@@ -112,9 +112,8 @@ void AudioOutputCallback(void * inUserData,
     }
     else
     {
-        
-        return;
         printf("Stopping...\n\n");
+        return;
         //stop playback
         [viewController stopPlayback];
         
