@@ -17,10 +17,10 @@ typedef NS_ENUM(NSUInteger, AudioQueueState) {
 };
 
 @interface AudioQueueViewController () {
-    AudioQueueState currentState;
 }
 
 @property (nonatomic,strong) NSURL *audioFile;
+@property AudioQueueState currentState;
 
 @end
 
@@ -42,26 +42,98 @@ void AudioInputCallback(void * inUserData,  // Custom audio metadata
                         UInt32 inNumberPacketDescriptions,
                         const AudioStreamPacketDescription * inPacketDescs) {
     
+    AudioQueueViewController* viewController = ((__bridge AudioQueueViewController*)inUserData);
+    
+    if (viewController.currentState != AudioQueueState_Recording)
+        return;
+    
+    OSStatus err;
+    
+    printf("Writing buffer %lld\n", currentPacket);
+    err = AudioFileWritePackets(audioFileID,
+                                false,
+                                inBuffer->mAudioDataByteSize,
+                                inPacketDescs,
+                                currentPacket,
+                                &inNumberPacketDescriptions,
+                                inBuffer->mAudioData);
+    
+    if (err != noErr) {
+        //error
+        printf("Recording error! %i\n",err);
+    }
+    
+    currentPacket += inNumberPacketDescriptions;
+    
+    AudioQueueEnqueueBuffer(queue, inBuffer, 0, NULL);
 }
 
 void AudioOutputCallback(void * inUserData,
                          AudioQueueRef outAQ,
                          AudioQueueBufferRef outBuffer) {
     
+    printf("Callback\n");
+    
+    AudioQueueViewController* viewController = ((__bridge AudioQueueViewController*)inUserData);
+    
+    if (viewController.currentState != AudioQueueState_Playing)
+        return;
+    
+    printf("Part 2\n");
+    
+    AudioStreamPacketDescription* packetDescs;
+    
+    UInt32 bytesRead;
+    UInt32 numPackets = 8000;
+    OSStatus err;
+    err = AudioFileReadPackets(audioFileID,
+                                  false,
+                                  &bytesRead,
+                                  packetDescs,
+                                  currentPacket,
+                                  &numPackets,
+                                  outBuffer->mAudioData);
+
+    
+    if (err != noErr) {
+        //error
+        printf("Playback error! %i\n",err);
+    }
+    
+    if (numPackets)
+    {
+        outBuffer->mAudioDataByteSize = bytesRead;
+        err = AudioQueueEnqueueBuffer(queue,
+                                         outBuffer,
+                                         0,
+                                         packetDescs);
+        
+        currentPacket += numPackets;
+    }
+    else
+    {
+        
+        return;
+        printf("Stopping...\n\n");
+        //stop playback
+        [viewController stopPlayback];
+        
+        //AudioQueueFreeBuffer(queue, outBuffer);
+    }
 }
 
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    currentState = AudioQueueState_Idle;
+    self.currentState = AudioQueueState_Idle;
     [self setupAudio];
 }
 
 - (void) setupAudio {
     // Describe format
     
-    audioFormat.mSampleRate         = 44100.00;
+    audioFormat.mSampleRate         = 8000.00;
     audioFormat.mFormatID           = kAudioFormatLinearPCM;
     audioFormat.mFormatFlags        = kLinearPCMFormatFlagIsBigEndian | kAudioFormatFlagIsSignedInteger | kAudioFormatFlagIsPacked;
     audioFormat.mFramesPerPacket    = 1;
@@ -73,7 +145,7 @@ void AudioOutputCallback(void * inUserData,
 }
 
 - (IBAction) recordButtonPressed:(id)sender {
-    switch (currentState) {
+    switch (self.currentState) {
         case AudioQueueState_Idle:
             break;
         case AudioQueueState_Playing:
@@ -87,11 +159,12 @@ void AudioOutputCallback(void * inUserData,
     
 #warning set the audio session up
     
-    currentState = AudioQueueState_Recording;
+    self.currentState = AudioQueueState_Recording;
+    currentPacket = 0;
     
     OSStatus err;
     
-    err = AudioQueueNewInput(&audioFormat, AudioInputCallback, NULL, CFRunLoopGetCurrent(), kCFRunLoopCommonModes, 0, &queue);
+    err = AudioQueueNewInput(&audioFormat, AudioInputCallback, (__bridge void *)(self), CFRunLoopGetCurrent(), kCFRunLoopCommonModes, 0, &queue);
     NSAssert(err == noErr,@"Error setting up audio queue: %i",err);
     
     //allocate the buffers
@@ -102,7 +175,7 @@ void AudioOutputCallback(void * inUserData,
     
     NSString *directoryName = NSTemporaryDirectory();
     NSString *generatedFileName =
-    [directoryName stringByAppendingPathComponent:@"audioQueueFile.wav"];
+    [directoryName stringByAppendingPathComponent:@"audioQueueFile.aif"];
     
     self.audioFile = [NSURL URLWithString:generatedFileName];
     
@@ -121,6 +194,8 @@ void AudioOutputCallback(void * inUserData,
 }
 
 - (void) stopRecording {
+    self.currentState = AudioQueueState_Idle;
+    
     AudioQueueStop(queue, true);
     for(int i = 0; i < NUM_BUFFERS; i++)
     {
@@ -130,12 +205,14 @@ void AudioOutputCallback(void * inUserData,
     AudioQueueDispose(queue, true);
     AudioFileClose(audioFileID);
     
-    currentState = AudioQueueState_Idle;
     
     NSLog(@"Stopped recording");
 }
 
 - (void) stopPlayback {
+    NSLog(@"Got stop call");
+    
+    AudioQueueStop(queue,false);
     
     for(int i = 0; i < NUM_BUFFERS; i++) {
         AudioQueueFreeBuffer(queue, buffers[i]);
@@ -144,13 +221,13 @@ void AudioOutputCallback(void * inUserData,
     AudioQueueDispose(queue, true);
     AudioFileClose(audioFileID);
     
-    currentState = AudioQueueState_Idle;
+    self.currentState = AudioQueueState_Idle;
     
     NSLog(@"Stopped playback");
 }
 
 - (IBAction)playButtonPressed:(id)sender {
-    switch (currentState) {
+    switch (self.currentState) {
         case AudioQueueState_Idle:
             break;
         case AudioQueueState_Playing:
@@ -163,15 +240,18 @@ void AudioOutputCallback(void * inUserData,
             break;
     }
     
-    currentState = AudioQueueState_Playing;
     
     currentPacket = 0;
     
     OSStatus err;
     
+    err = AudioFileOpenURL((__bridge CFURLRef)(self.audioFile), kAudioFileReadPermission, kAudioFileAIFFType, &audioFileID);
+
+    NSAssert(err == noErr,@"Error opening file %i",err);
+    
     err = AudioQueueNewOutput(&audioFormat,
                               AudioOutputCallback,
-                              NULL,
+                              (__bridge void *)(self),
                               CFRunLoopGetCurrent(),
                               kCFRunLoopCommonModes,
                               0,
@@ -179,14 +259,16 @@ void AudioOutputCallback(void * inUserData,
     
     NSAssert(err == noErr,@"Error creating output queue %i",err);
     
-    for (int i = 0; i < NUM_BUFFERS && (currentState == AudioQueueState_Playing); i++) {
+    self.currentState = AudioQueueState_Playing;
+    
+    for (int i = 0; i < NUM_BUFFERS && (self.currentState == AudioQueueState_Playing); i++) {
         AudioQueueAllocateBuffer(queue, 16000, &buffers[i]);
-        AudioOutputCallback(NULL, queue, buffers[i]);
+        AudioOutputCallback((__bridge void *)(self), queue, buffers[i]);
     }
     
     err = AudioQueueStart(queue, NULL);
     
-    NSAssert(err == noErr,@"Error creating starting queue %i",err);
+    NSAssert(err == noErr,@"Error starting output queue %i",err);
     
     NSLog(@"Playing");
 }
