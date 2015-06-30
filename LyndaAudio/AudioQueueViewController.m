@@ -230,6 +230,8 @@ void AudioOutputCallback(void * inUserData,
 - (void) startPlayback {
     NSLog(@"Starting playback method");
     
+    [self stopPlayback];
+    
     currentPacket = 0;
     
     OSStatus err;
@@ -281,6 +283,10 @@ void AudioOutputCallback(void * inUserData,
     
     AudioQueueDispose(queue, true);
     AudioFileClose(audioFileID);
+}
+
+- (void)dealloc {
+    [self stopPlayback];
 }
 
 @end
