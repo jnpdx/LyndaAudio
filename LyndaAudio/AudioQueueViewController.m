@@ -8,7 +8,7 @@
 
 #import "AudioQueueViewController.h"
 
-@import AudioToolbox;
+@import AVFoundation;
 
 
 typedef NS_ENUM(NSUInteger, AudioQueueState) {
@@ -156,7 +156,18 @@ void AudioOutputCallback(void * inUserData,
             break;
     }
     
-#warning set the audio session up
+    NSError *error;
+    //set up the audio session
+    [[AVAudioSession sharedInstance] setActive:YES withOptions:0 error:&error];
+    if (error != nil) {
+        NSAssert(error == nil,@"Error setting audio session to active");
+    }
+    
+    //set the category
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryRecord error:&error];
+    if (error != nil) {
+        NSAssert(error == nil,@"Error setting audio session category");
+    }
     
     self.currentQueueState = AudioQueueState_Recording;
     currentPacket = 0;
@@ -220,6 +231,18 @@ void AudioOutputCallback(void * inUserData,
             break;
         default:
             break;
+    }
+    
+    NSError *error;
+    [[AVAudioSession sharedInstance] setActive:YES withOptions:0 error:&error];
+    if (error != nil) {
+        NSAssert(error == nil,@"Error setting audio session to active");
+    }
+    
+    //set the category
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&error];
+    if (error != nil) {
+        NSAssert(error == nil,@"Error setting audio session category");
     }
     
     [self startPlayback];
