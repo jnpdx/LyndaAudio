@@ -10,6 +10,88 @@
 
 @import AudioToolbox;
 
+static const int kNumberBuffers = 3;                              // 1
+typedef struct {
+    AudioStreamBasicDescription   mDataFormat;                    // 2
+    AudioQueueRef                 mQueue;                         // 3
+    AudioQueueBufferRef           mBuffers[kNumberBuffers];       // 4
+    AudioFileID                   mAudioFile;                     // 5
+    UInt32                        bufferByteSize;                 // 6
+    SInt64                        mCurrentPacket;                 // 7
+    UInt32                        mNumPacketsToRead;              // 8
+    AudioStreamPacketDescription  *mPacketDescs;                  // 9
+    bool                          mIsRunning;                     // 10
+} AQPlayerState;
+
+static void HandleOutputBuffer (
+                                void                *aqData,
+                                AudioQueueRef       inAQ,
+                                AudioQueueBufferRef inBuffer
+                                ) {
+    AQPlayerState *pAqData = (AQPlayerState *) aqData;        // 1
+    if (pAqData->mIsRunning == 0) return;                     // 2
+    UInt32 numBytesReadFromFile;                              // 3
+    UInt32 numPackets = pAqData->mNumPacketsToRead;           // 4
+    AudioFileReadPackets (
+                          pAqData->mAudioFile,
+                          false,
+                          &numBytesReadFromFile,
+                          pAqData->mPacketDescs,
+                          pAqData->mCurrentPacket,
+                          &numPackets,
+                          inBuffer->mAudioData
+                          );
+    if (numPackets > 0) {                                     // 5
+        inBuffer->mAudioDataByteSize = numBytesReadFromFile;  // 6
+        AudioQueueEnqueueBuffer (
+                                 pAqData->mQueue,
+                                 inBuffer,
+                                 (pAqData->mPacketDescs ? numPackets : 0),
+                                 pAqData->mPacketDescs
+                                 );
+        pAqData->mCurrentPacket += numPackets;                // 7 
+    } else {
+        AudioQueueStop (
+                        pAqData->mQueue,
+                        false
+                        );
+        pAqData->mIsRunning = false; 
+    }
+}
+
+void DeriveBufferSize (
+                       AudioStreamBasicDescription ASBDesc,                            // 1
+                       UInt32                      maxPacketSize,                       // 2
+                       Float64                     seconds,                             // 3
+                       UInt32                      *outBufferSize,                      // 4
+                       UInt32                      *outNumPacketsToRead                 // 5
+) {
+    static const int maxBufferSize = 0x50000;                        // 6
+    static const int minBufferSize = 0x4000;                         // 7
+    
+    if (ASBDesc.mFramesPerPacket != 0) {                             // 8
+        Float64 numPacketsForTime =
+        ASBDesc.mSampleRate / ASBDesc.mFramesPerPacket * seconds;
+        *outBufferSize = numPacketsForTime * maxPacketSize;
+    } else {                                                         // 9
+        *outBufferSize =
+        maxBufferSize > maxPacketSize ?
+        maxBufferSize : maxPacketSize;
+    }
+    
+    if (                                                             // 10
+        *outBufferSize > maxBufferSize &&
+        *outBufferSize > maxPacketSize
+        )
+        *outBufferSize = maxBufferSize;
+    else {                                                           // 11
+        if (*outBufferSize < minBufferSize)
+            *outBufferSize = minBufferSize;
+    }
+    
+    *outNumPacketsToRead = *outBufferSize / maxPacketSize;           // 12
+}
+
 typedef NS_ENUM(NSUInteger, AudioQueueState) {
     AudioQueueState_Idle,
     AudioQueueState_Recording,
@@ -72,14 +154,13 @@ void AudioOutputCallback(void * inUserData,
                          AudioQueueRef outAQ,
                          AudioQueueBufferRef outBuffer) {
     
-    printf("Callback\n");
     
     AudioQueueViewController* viewController = ((__bridge AudioQueueViewController*)inUserData);
     
     if (viewController.currentState != AudioQueueState_Playing)
         return;
     
-    printf("Part 2\n");
+    printf("Queueing buffer %i\n",currentPacket);
     
     AudioStreamPacketDescription* packetDescs;
     
@@ -108,12 +189,15 @@ void AudioOutputCallback(void * inUserData,
                                          0,
                                          packetDescs);
         
+        if (err != noErr) {
+            printf("Error enqueing buffer: %i\n\n",err);
+        }
         currentPacket += numPackets;
     }
     else
     {
-        printf("Stopping...\n\n");
-        return;
+        printf("Stopping while playing...\n\n");
+        //return;
         //stop playback
         [viewController stopPlayback];
         
@@ -211,6 +295,8 @@ void AudioOutputCallback(void * inUserData,
 - (void) stopPlayback {
     NSLog(@"Got stop call");
     
+    if (self.currentState != AudioQueueState_Playing) return;
+    
     AudioQueueStop(queue,false);
     
     for(int i = 0; i < NUM_BUFFERS; i++) {
@@ -265,6 +351,7 @@ void AudioOutputCallback(void * inUserData,
         AudioOutputCallback((__bridge void *)(self), queue, buffers[i]);
     }
     
+    printf("Calling start on output\n");
     err = AudioQueueStart(queue, NULL);
     
     NSAssert(err == noErr,@"Error starting output queue %i",err);
