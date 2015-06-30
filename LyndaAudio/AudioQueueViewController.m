@@ -76,7 +76,51 @@ void AudioOutputCallback(void * inUserData,
     
     AudioQueueViewController* viewController = ((__bridge AudioQueueViewController*)inUserData);
     
+    if (viewController.currentQueueState != AudioQueueState_Playing) {
+        printf("Not playing -- return\n");
+        return;
+    }
     
+    printf("Queuing buffer %lld for playback\n", currentPacket);
+    
+    AudioStreamPacketDescription* packetDescs;
+    
+    UInt32 bytesRead;
+    UInt32 numPackets = 8000;
+    OSStatus err;
+    err = AudioFileReadPackets(audioFileID,
+                                  false,
+                                  &bytesRead,
+                                  packetDescs,
+                                  currentPacket,
+                                  &numPackets,
+                                  outBuffer->mAudioData);
+    if (err != noErr) {
+        [viewController handleError];
+    }
+    
+    if (numPackets)
+    {
+        outBuffer->mAudioDataByteSize = bytesRead;
+        err = AudioQueueEnqueueBuffer(queue,
+                                         outBuffer,
+                                         0,
+                                         packetDescs);
+        
+        currentPacket += numPackets;
+    }
+    else
+    {
+        if (viewController.currentQueueState == AudioQueueState_Playing)
+        {
+            printf("Stopping while playing\n");
+            AudioQueueStop(queue, false);
+            AudioFileClose(audioFileID);
+            viewController.currentQueueState = AudioQueueState_Idle;
+        }
+        
+        AudioQueueFreeBuffer(queue, outBuffer);
+    }
 }
 
 
@@ -165,10 +209,6 @@ void AudioOutputCallback(void * inUserData,
     NSLog(@"Stopped recording");
 }
 
-- (void) stopPlayback {
-    NSLog(@"Got stop call");
-    
-}
 
 - (IBAction)playButtonPressed:(id)sender {
     switch (self.currentQueueState) {
@@ -184,7 +224,63 @@ void AudioOutputCallback(void * inUserData,
             break;
     }
     
+    [self startPlayback];
+}
+
+- (void) startPlayback {
+    NSLog(@"Starting playback method");
     
+    currentPacket = 0;
+    
+    OSStatus err;
+    
+    err = AudioFileOpenURL((__bridge CFURLRef)(self.audioFile), kAudioFileReadPermission, kAudioFileAIFFType, &audioFileID);
+    
+    NSAssert(err == noErr,@"");
+    
+    err = AudioQueueNewOutput(&audioFormat,
+                        AudioOutputCallback,
+                        (__bridge void *)(self),
+                        CFRunLoopGetCurrent(),
+                        kCFRunLoopCommonModes,
+                        0,
+                        &queue);
+    
+    NSLog(@"Made output queue");
+    
+    NSAssert(err == noErr,@"");
+    
+    self.currentQueueState = AudioQueueState_Playing;
+    
+    for (int i = 0; i < NUM_BUFFERS && self.currentQueueState == AudioQueueState_Playing; i++)
+    {
+        AudioQueueAllocateBuffer(queue, 16000, &buffers[i]);
+        printf("Calling callback from loop\n");
+        AudioOutputCallback((__bridge void *)(self), queue, buffers[i]);
+    }
+    
+    printf("Calling start on output\n");
+    err = AudioQueueStart(queue, NULL);
+    
+    NSAssert(err == noErr,@"");
+    
+}
+
+- (void) handleError {
+    NSAssert(false, @"");
+}
+
+- (void) stopPlayback {
+    NSLog(@"Stop playback called");
+    self.currentQueueState = AudioQueueState_Idle;
+    
+    for(int i = 0; i < NUM_BUFFERS; i++)
+    {
+        AudioQueueFreeBuffer(queue, buffers[i]);
+    }
+    
+    AudioQueueDispose(queue, true);
+    AudioFileClose(audioFileID);
 }
 
 @end
