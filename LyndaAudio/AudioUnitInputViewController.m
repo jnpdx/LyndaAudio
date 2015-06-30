@@ -151,8 +151,8 @@ static OSStatus recordingCallback(void *inRefCon,
     AudioBuffer buffer;
     
     buffer.mNumberChannels = 1;
-    buffer.mDataByteSize = inNumberFrames * 2;
-    buffer.mData = malloc( inNumberFrames * 2 );
+    buffer.mDataByteSize = inNumberFrames * sizeof(SInt16);
+    buffer.mData = malloc( buffer.mDataByteSize );
     
     // Put buffer in a AudioBufferList
     AudioBufferList bufferList;
@@ -176,16 +176,18 @@ static OSStatus recordingCallback(void *inRefCon,
     
     SInt16 *frameBuffer = buffer.mData;
     
-    UInt32 totalAmplitude = 0;
+    double totalAmplitude = 0;
     
     for (int i = 0; i < inNumberFrames; i++) {
         //loop through the buffer
         //printf("%i",frameBuffer[i]);
-        totalAmplitude += abs(frameBuffer[i]);
+        totalAmplitude += frameBuffer[i] * frameBuffer[i];
     }
     totalAmplitude /= inNumberFrames;
     
-    float alphaFloat = (float)totalAmplitude / (float)SHRT_MAX * 2;
+    totalAmplitude = sqrt(totalAmplitude);
+    
+    float alphaFloat = totalAmplitude / (float)SHRT_MAX * 2;
     
     dispatch_async(dispatch_get_main_queue(), ^{
         ((__bridge AudioUnitInputViewController*)inRefCon).colorView.backgroundColor = [UIColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:alphaFloat];
