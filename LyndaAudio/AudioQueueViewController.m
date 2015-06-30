@@ -51,13 +51,14 @@ void AudioInputCallback(void * inUserData,  // Custom audio metadata
     OSStatus err;
     
     printf("Writing buffer %lld\n", currentPacket);
+
     err = AudioFileWritePackets(audioFileID,
-                                false,
-                                inBuffer->mAudioDataByteSize,
-                                inPacketDescs,
-                                currentPacket,
-                                &inNumberPacketDescriptions,
-                                inBuffer->mAudioData);
+                            false,
+                            inBuffer->mAudioDataByteSize,
+                            inPacketDescs,
+                            currentPacket,
+                            &inNumberPacketDescriptions,
+                            inBuffer->mAudioData);
     
     if (err != noErr) {
         //error
@@ -88,14 +89,11 @@ void AudioOutputCallback(void * inUserData,
     UInt32 bytesRead;
     UInt32 numPackets = 8000;
     OSStatus err;
-    err = AudioFileReadPackets(audioFileID,
-                                  false,
-                                  &bytesRead,
-                                  packetDescs,
-                                  currentPacket,
-                                  &numPackets,
-                                  outBuffer->mAudioData);
+    
+    err = AudioFileReadPacketData(audioFileID, false, &bytesRead, NULL, currentPacket, &numPackets, outBuffer->mAudioData);
+    
     if (err != noErr) {
+        printf("Error %i\n\n",err);
         [viewController handleError];
     }
     
