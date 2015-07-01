@@ -36,7 +36,7 @@ static AudioQueueRef queue;
 static AudioQueueBufferRef buffers[NUM_BUFFERS];
 static AudioFileID audioFileID;
 
-void AudioInputCallback(void * inUserData,  // Custom audio metadata
+void AudioInputCallback(void * inUserData, 
                         AudioQueueRef inAQ,
                         AudioQueueBufferRef inBuffer,
                         const AudioTimeStamp * inStartTime,
@@ -132,7 +132,7 @@ void AudioOutputCallback(void * inUserData,
 - (void) setupAudio {
     // Describe format
     
-    audioFormat.mSampleRate         = 8000.00;
+    audioFormat.mSampleRate         = 44100.00;
     audioFormat.mFormatID           = kAudioFormatLinearPCM;
     audioFormat.mFormatFlags        = kLinearPCMFormatFlagIsBigEndian | kAudioFormatFlagIsSignedInteger | kAudioFormatFlagIsPacked;
     audioFormat.mFramesPerPacket    = 1;
@@ -251,7 +251,7 @@ void AudioOutputCallback(void * inUserData,
 - (void) startPlayback {
     NSLog(@"Starting playback method");
     
-    [self stopPlayback];
+    //[self stopPlayback];
     
     currentPacket = 0;
     
