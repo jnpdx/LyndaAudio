@@ -20,6 +20,10 @@ typedef NS_ENUM(NSUInteger, AudioQueueState) {
 @interface AudioQueueViewController () {
 }
 
+#warning remove this
+@property (nonatomic,strong) AVAudioPlayer *audioPlayer;
+
+
 @property (nonatomic,strong) NSURL *audioFile;
 @property AudioQueueState currentQueueState;
 
@@ -90,11 +94,17 @@ void AudioOutputCallback(void * inUserData,
     UInt32 numPackets = 8000;
     OSStatus err;
     
-    err = AudioFileReadPacketData(audioFileID, false, &bytesRead, NULL, currentPacket, &numPackets, outBuffer->mAudioData);
+    err = AudioFileReadBytes(audioFileID, false, currentPacket * 2, &numPackets, outBuffer->mAudioData); bytesRead = numPackets * 2;
+    //err = AudioFileReadPacketData(audioFileID, false, &bytesRead, NULL, currentPacket, &numPackets, outBuffer->mAudioData);
     
     if (err != noErr) {
-        printf("Error %i\n\n",err);
-        [viewController handleError];
+        if (err == kAudioFileEndOfFileError) {
+            
+        } else {
+            printf("Error %i\n\n",err);
+            [viewController handleError];
+        }
+        
     }
     
     if (numPackets)
@@ -110,6 +120,7 @@ void AudioOutputCallback(void * inUserData,
     }
     else
     {
+        printf("Num packets = %i\n bytesRead = %i\n",numPackets,bytesRead);
         if (viewController.currentQueueState == AudioQueueState_Playing)
         {
             printf("Stopping while playing\n");
@@ -133,9 +144,18 @@ void AudioOutputCallback(void * inUserData,
 - (void) setupAudio {
     // Describe format
     
+//    audioFormat.mSampleRate         = 44100.00;
+//    audioFormat.mFormatID           = kAudioFormatLinearPCM;
+//    audioFormat.mFormatFlags        = kLinearPCMFormatFlagIsBigEndian | kAudioFormatFlagIsSignedInteger | kAudioFormatFlagIsPacked;
+//    audioFormat.mFramesPerPacket    = 1;
+//    audioFormat.mChannelsPerFrame   = 1;
+//    audioFormat.mBitsPerChannel     = 16;
+//    audioFormat.mBytesPerFrame		= audioFormat.mChannelsPerFrame * sizeof(SInt16);
+//    audioFormat.mBytesPerPacket		= audioFormat.mFramesPerPacket * audioFormat.mBytesPerFrame;
+    
     audioFormat.mSampleRate         = 44100.00;
     audioFormat.mFormatID           = kAudioFormatLinearPCM;
-    audioFormat.mFormatFlags        = kLinearPCMFormatFlagIsBigEndian | kAudioFormatFlagIsSignedInteger | kAudioFormatFlagIsPacked;
+    audioFormat.mFormatFlags        = kAudioFormatFlagIsSignedInteger | kAudioFormatFlagIsPacked;
     audioFormat.mFramesPerPacket    = 1;
     audioFormat.mChannelsPerFrame   = 1;
     audioFormat.mBitsPerChannel     = 16;
@@ -193,13 +213,13 @@ void AudioOutputCallback(void * inUserData,
             NSString *directoryName = NSTemporaryDirectory();
             
             NSString *generatedFileName =
-            [directoryName stringByAppendingPathComponent:@"audioQueueFile.aif"];
+            [directoryName stringByAppendingPathComponent:@"audioQueueFile.wav"];
             
             self.audioFile = [NSURL URLWithString:generatedFileName];
             
             
             err = AudioFileCreateWithURL((__bridge CFURLRef)(self.audioFile),
-                                         kAudioFileAIFFType,
+                                         kAudioFileWAVEType,
                                          &audioFormat,
                                          kAudioFileFlags_EraseFile,
                                          &audioFileID);
@@ -264,6 +284,12 @@ void AudioOutputCallback(void * inUserData,
 }
 
 - (void) startPlayback {
+    
+//    NSError *error;
+//    self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:self.audioFile error:&error];
+//    [self.audioPlayer play];
+//    
+//    return;
     NSLog(@"Starting playback method");
     
     //[self stopPlayback];
@@ -272,7 +298,7 @@ void AudioOutputCallback(void * inUserData,
     
     OSStatus err;
     
-    err = AudioFileOpenURL((__bridge CFURLRef)(self.audioFile), kAudioFileReadPermission, kAudioFileAIFFType, &audioFileID);
+    err = AudioFileOpenURL((__bridge CFURLRef)(self.audioFile), kAudioFileReadPermission, kAudioFileWAVEType, &audioFileID);
     
     NSAssert(err == noErr,@"");
     
