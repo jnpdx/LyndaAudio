@@ -99,6 +99,7 @@ void AudioOutputCallback(void * inUserData,
     
     if (numPackets)
     {
+        printf("Read %i bytes\n",bytesRead);
         outBuffer->mAudioDataByteSize = bytesRead;
         err = AudioQueueEnqueueBuffer(queue,
                                          outBuffer,
@@ -169,8 +170,11 @@ void AudioOutputCallback(void * inUserData,
         NSAssert(error == nil,@"Error setting audio session category");
     }
     
+    
     [[AVAudioSession sharedInstance] requestRecordPermission:^(BOOL granted) {
         if (granted) {
+            
+            
             
             self.currentQueueState = AudioQueueState_Recording;
             currentPacket = 0;
@@ -187,6 +191,7 @@ void AudioOutputCallback(void * inUserData,
             }
             
             NSString *directoryName = NSTemporaryDirectory();
+            
             NSString *generatedFileName =
             [directoryName stringByAppendingPathComponent:@"audioQueueFile.aif"];
             
