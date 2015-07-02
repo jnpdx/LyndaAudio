@@ -86,11 +86,10 @@ void AudioOutputCallback(void * inUserData,
     
     AudioStreamPacketDescription* packetDescs;
     
-    UInt32 bytesRead;
-    UInt32 numPackets = 8000;
+    UInt32 numBytes = 16000;
     OSStatus err;
     
-    err = AudioFileReadBytes(audioFileID, false, currentByte, &numPackets, outBuffer->mAudioData); bytesRead = numPackets;
+    err = AudioFileReadBytes(audioFileID, false, currentByte, &numBytes, outBuffer->mAudioData);
 
     if (err != noErr) {
         if (err == kAudioFileEndOfFileError) {
@@ -102,20 +101,20 @@ void AudioOutputCallback(void * inUserData,
         
     }
     
-    if (numPackets)
+    if (numBytes)
     {
-        printf("Read %i bytes\n",bytesRead);
-        outBuffer->mAudioDataByteSize = bytesRead;
+        printf("Read %i bytes\n",numBytes);
+        outBuffer->mAudioDataByteSize = numBytes;
         err = AudioQueueEnqueueBuffer(queue,
                                          outBuffer,
                                          0,
                                          packetDescs);
         
-        currentByte += numPackets;
+        currentByte += numBytes;
     }
     
-    if (numPackets == 0 || err == kAudioFileEndOfFileError) {
-        printf("Num packets = %i\n bytesRead = %i\n",numPackets,bytesRead);
+    if (numBytes == 0 || err == kAudioFileEndOfFileError) {
+        printf("Num packets = %i\n bytesRead = %i\n",numBytes,numBytes);
         if (viewController.currentQueueState == AudioQueueState_Playing)
         {
             printf("Stopping while playing\n");
