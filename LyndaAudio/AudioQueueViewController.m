@@ -84,46 +84,37 @@ void AudioOutputCallback(void * inUserData,
     
     printf("Queuing buffer %lld for playback\n", currentByte);
     
-    AudioStreamPacketDescription* packetDescs;
     
     UInt32 numBytes = 16000;
     OSStatus err;
     
     err = AudioFileReadBytes(audioFileID, false, currentByte, &numBytes, outBuffer->mAudioData);
 
-    if (err != noErr) {
-        if (err == kAudioFileEndOfFileError) {
-            
-        } else {
-            printf("Error %i\n\n",err);
-            [viewController handleError];
-        }
-        
+    if (err != noErr && err != kAudioFileEndOfFileError) {
+        printf("Error %i\n\n",err);
+        [viewController handleError];
     }
     
     if (numBytes)
     {
+
         printf("Read %i bytes\n",numBytes);
         outBuffer->mAudioDataByteSize = numBytes;
         err = AudioQueueEnqueueBuffer(queue,
                                          outBuffer,
                                          0,
-                                         packetDescs);
+                                         NULL);
         
         currentByte += numBytes;
     }
     
     if (numBytes == 0 || err == kAudioFileEndOfFileError) {
         printf("Num packets = %i\n bytesRead = %i\n",numBytes,numBytes);
-        if (viewController.currentQueueState == AudioQueueState_Playing)
-        {
-            printf("Stopping while playing\n");
-            AudioQueueStop(queue, false);
-            AudioFileClose(audioFileID);
-            viewController.currentQueueState = AudioQueueState_Idle;
-        }
-        
-        AudioQueueFreeBuffer(queue, outBuffer);
+        printf("Stopping while playing\n");
+        AudioQueueStop(queue, false);
+        AudioFileClose(audioFileID);
+        viewController.currentQueueState = AudioQueueState_Idle;
+        //AudioQueueFreeBuffer(queue, outBuffer);
     }
 }
 
@@ -277,7 +268,7 @@ void AudioOutputCallback(void * inUserData,
 //    return;
     NSLog(@"Starting playback method");
     
-    //[self stopPlayback];
+    [self stopPlayback];
     
     currentByte = 0;
     
