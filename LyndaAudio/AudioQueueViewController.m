@@ -55,21 +55,25 @@ void AudioInputCallback(void * inUserData,
     OSStatus err;
     
     printf("Writing buffer %lld\n", currentPacket);
-
-    err = AudioFileWritePackets(audioFileID,
-                            false,
-                            inBuffer->mAudioDataByteSize,
-                            inPacketDescs,
-                            currentPacket,
-                            &inNumberPacketDescriptions,
-                            inBuffer->mAudioData);
+    
+    UInt32 ioBytes = audioFormat.mBytesPerPacket * inNumberPacketDescriptions;
+    
+    err = AudioFileWriteBytes(audioFileID, false, currentPacket, &ioBytes, inBuffer->mAudioData);
+    
+//    err = AudioFileWritePackets(audioFileID,
+//                            false,
+//                            inBuffer->mAudioDataByteSize,
+//                            inPacketDescs,
+//                            currentPacket,
+//                            &inNumberPacketDescriptions,
+//                            inBuffer->mAudioData);
     
     if (err != noErr) {
         //error
         printf("Recording error! %i\n",err);
     }
     
-    currentPacket += inNumberPacketDescriptions;
+    currentPacket += ioBytes;
     
     AudioQueueEnqueueBuffer(queue, inBuffer, 0, NULL);
 }
@@ -94,7 +98,7 @@ void AudioOutputCallback(void * inUserData,
     UInt32 numPackets = 8000;
     OSStatus err;
     
-    err = AudioFileReadBytes(audioFileID, false, currentPacket * 2, &numPackets, outBuffer->mAudioData); bytesRead = numPackets * 2;
+    err = AudioFileReadBytes(audioFileID, false, currentPacket, &numPackets, outBuffer->mAudioData); bytesRead = numPackets;
     //err = AudioFileReadPacketData(audioFileID, false, &bytesRead, NULL, currentPacket, &numPackets, outBuffer->mAudioData);
     
     if (err != noErr) {
