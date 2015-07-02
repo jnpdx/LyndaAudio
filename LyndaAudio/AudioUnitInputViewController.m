@@ -46,7 +46,7 @@ static AudioComponentInstance audioUnit;
     // Get audio units
     err = AudioComponentInstanceNew(inputComponent, &audioUnit);
     if (err != noErr) {
-        //error
+        NSAssert(NO, @"Couldn't get audio component");
     }
     
     // Enable IO for recording
@@ -224,10 +224,18 @@ static OSStatus playbackCallback(void *inRefCon,
         //error
     }
     
-    OSStatus err = AudioOutputUnitStart(audioUnit);
-    if (err != noErr) {
-        //error
-    }
+    [[AVAudioSession sharedInstance] requestRecordPermission:^(BOOL granted) {
+        if (granted) {
+            OSStatus err = AudioOutputUnitStart(audioUnit);
+            if (err != noErr) {
+                //error
+            }
+        } else {
+            NSAssert(NO, @"No mic permission");
+        }
+    }];
+    
+    
 }
 
 - (IBAction)stopButtonPressed:(id)sender {
