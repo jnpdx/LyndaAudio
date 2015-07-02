@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -150,24 +150,15 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AVAudioRecorder" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cAR-9O-czP">
-                                <rect key="frame" x="16" y="20" width="568" height="32"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="cAR-9O-czP" firstAttribute="trailing" secondItem="WoW-Ad-sMJ" secondAttribute="trailingMargin" id="4vz-Bk-0Fh"/>
                             <constraint firstItem="PhQ-kh-FQZ" firstAttribute="centerX" secondItem="gaU-oq-lzl" secondAttribute="centerX" constant="-0.5" id="8Ch-8j-NSe"/>
-                            <constraint firstItem="cAR-9O-czP" firstAttribute="top" secondItem="G3K-XU-ddj" secondAttribute="bottom" id="DUc-Yu-21H"/>
                             <constraint firstAttribute="centerY" secondItem="PhQ-kh-FQZ" secondAttribute="centerY" id="WPs-yP-PLm"/>
                             <constraint firstItem="PhQ-kh-FQZ" firstAttribute="top" secondItem="XTD-VV-n8A" secondAttribute="bottom" constant="8" id="YFN-w6-kLA"/>
                             <constraint firstAttribute="centerX" secondItem="PhQ-kh-FQZ" secondAttribute="centerX" id="Zyw-Gf-QNK"/>
                             <constraint firstItem="gaU-oq-lzl" firstAttribute="top" secondItem="PhQ-kh-FQZ" secondAttribute="bottom" constant="8" id="cYp-OG-h3f"/>
                             <constraint firstItem="XTD-VV-n8A" firstAttribute="centerX" secondItem="PhQ-kh-FQZ" secondAttribute="centerX" id="dhq-QA-ug5"/>
-                            <constraint firstItem="cAR-9O-czP" firstAttribute="leading" secondItem="WoW-Ad-sMJ" secondAttribute="leadingMargin" id="vHR-sX-q3j"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="AVAudioRecorder" image="first" id="Nx8-Zl-mxL"/>
@@ -212,36 +203,21 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bcx-Mw-YTV">
-                                <rect key="frame" x="16" y="60" width="568" height="217"/>
+                                <rect key="frame" x="16" y="28" width="568" height="249"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AudioUnit / RemoteIO Recorder" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="7lg-sa-hHd">
-                                <rect key="frame" x="16" y="20" width="568" height="32"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="7lg-sa-hHd" firstAttribute="leading" secondItem="ubq-Iq-407" secondAttribute="leadingMargin" id="0R0-hk-uI1"/>
                             <constraint firstItem="Bcx-Mw-YTV" firstAttribute="leading" secondItem="ubq-Iq-407" secondAttribute="leadingMargin" id="7C6-cb-1Sv"/>
                             <constraint firstAttribute="centerY" secondItem="ykq-P0-Fb7" secondAttribute="centerY" id="8bE-5Z-BYN"/>
                             <constraint firstItem="ykq-P0-Fb7" firstAttribute="top" secondItem="Bcx-Mw-YTV" secondAttribute="bottom" constant="8" id="Ezl-15-xd4"/>
-                            <constraint firstItem="7lg-sa-hHd" firstAttribute="top" secondItem="DWk-91-2wL" secondAttribute="bottom" id="Hel-c8-B5Z"/>
                             <constraint firstItem="Bcx-Mw-YTV" firstAttribute="top" secondItem="DWk-91-2wL" secondAttribute="bottom" constant="8" id="ND7-NK-2UB"/>
                             <constraint firstItem="Bcx-Mw-YTV" firstAttribute="trailing" secondItem="ubq-Iq-407" secondAttribute="trailingMargin" id="TFG-9V-7ad"/>
-                            <constraint firstItem="Bcx-Mw-YTV" firstAttribute="top" secondItem="7lg-sa-hHd" secondAttribute="bottom" constant="8" id="ZPO-Em-Kna"/>
                             <constraint firstAttribute="centerX" secondItem="ykq-P0-Fb7" secondAttribute="centerX" id="aOA-uv-lSh"/>
                             <constraint firstItem="ZS9-Rd-4RW" firstAttribute="centerX" secondItem="ykq-P0-Fb7" secondAttribute="centerX" id="h8s-5p-n8d"/>
                             <constraint firstItem="ZS9-Rd-4RW" firstAttribute="top" secondItem="ykq-P0-Fb7" secondAttribute="bottom" constant="8" id="koP-V6-uJ6"/>
-                            <constraint firstItem="7lg-sa-hHd" firstAttribute="trailing" secondItem="ubq-Iq-407" secondAttribute="trailingMargin" id="kwv-gq-DR5"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="ND7-NK-2UB"/>
-                            </mask>
-                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="AU Recorder" image="first" id="eqh-fr-n2z"/>
                     <connections>
@@ -288,7 +264,7 @@
                                     <action selector="sliderMoved:" destination="6cC-6v-pAF" eventType="valueChanged" id="Jgq-JW-tqw"/>
                                 </connections>
                             </slider>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AudioUnit / RemoteIO Player" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="kfd-SE-wBT">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AudioUnit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfd-SE-wBT">
                                 <rect key="frame" x="16" y="20" width="568" height="32"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -328,8 +304,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nb4-Rx-SUt">
-                                <rect key="frame" x="253" y="285" width="94" height="30"/>
-                                <state key="normal" title="Record Audio">
+                                <rect key="frame" x="275" y="285" width="50" height="30"/>
+                                <state key="normal" title="Record">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -337,30 +313,21 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ugq-v2-QWd">
-                                <rect key="frame" x="227" y="323" width="145" height="30"/>
-                                <state key="normal" title="Play Recorded Audio">
+                                <rect key="frame" x="285" y="323" width="30" height="30"/>
+                                <state key="normal" title="Play">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="playButtonPressed:" destination="dHq-tY-5fc" eventType="touchUpInside" id="m6I-cM-Yh1"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Audio Queue Services" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aHC-kj-xqY">
-                                <rect key="frame" x="16" y="20" width="568" height="31.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="nb4-Rx-SUt" firstAttribute="centerX" secondItem="Ugq-v2-QWd" secondAttribute="centerX" id="9Om-xF-Fld"/>
-                            <constraint firstItem="aHC-kj-xqY" firstAttribute="trailing" secondItem="wP7-h2-i4y" secondAttribute="trailingMargin" id="Epl-th-bMk"/>
-                            <constraint firstItem="aHC-kj-xqY" firstAttribute="top" secondItem="gKK-lV-FKl" secondAttribute="bottom" id="L2g-BZ-hzb"/>
                             <constraint firstItem="Ugq-v2-QWd" firstAttribute="top" secondItem="nb4-Rx-SUt" secondAttribute="bottom" constant="8" id="Z5b-k8-KYx"/>
                             <constraint firstAttribute="centerX" secondItem="nb4-Rx-SUt" secondAttribute="centerX" id="arM-tt-Qud"/>
                             <constraint firstAttribute="centerY" secondItem="nb4-Rx-SUt" secondAttribute="centerY" id="dWC-sz-qhs"/>
-                            <constraint firstItem="aHC-kj-xqY" firstAttribute="leading" secondItem="wP7-h2-i4y" secondAttribute="leadingMargin" id="fzC-mq-Dp9"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="AudioQueue" image="first" id="0ke-xj-OVv"/>

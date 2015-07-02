@@ -36,7 +36,7 @@ static AudioQueueRef queue;
 static AudioQueueBufferRef buffers[NUM_BUFFERS];
 static AudioFileID audioFileID;
 
-void AudioInputCallback(void * inUserData, 
+void AudioInputCallback(void * inUserData,  // Custom audio metadata
                         AudioQueueRef inAQ,
                         AudioQueueBufferRef inBuffer,
                         const AudioTimeStamp * inStartTime,
@@ -99,7 +99,6 @@ void AudioOutputCallback(void * inUserData,
     
     if (numPackets)
     {
-        printf("Read %i bytes\n",bytesRead);
         outBuffer->mAudioDataByteSize = bytesRead;
         err = AudioQueueEnqueueBuffer(queue,
                                          outBuffer,
@@ -133,7 +132,7 @@ void AudioOutputCallback(void * inUserData,
 - (void) setupAudio {
     // Describe format
     
-    audioFormat.mSampleRate         = 44100.00;
+    audioFormat.mSampleRate         = 8000.00;
     audioFormat.mFormatID           = kAudioFormatLinearPCM;
     audioFormat.mFormatFlags        = kLinearPCMFormatFlagIsBigEndian | kAudioFormatFlagIsSignedInteger | kAudioFormatFlagIsPacked;
     audioFormat.mFramesPerPacket    = 1;
@@ -170,52 +169,38 @@ void AudioOutputCallback(void * inUserData,
         NSAssert(error == nil,@"Error setting audio session category");
     }
     
+    self.currentQueueState = AudioQueueState_Recording;
+    currentPacket = 0;
     
-    [[AVAudioSession sharedInstance] requestRecordPermission:^(BOOL granted) {
-        if (granted) {
-            
-            
-            
-            self.currentQueueState = AudioQueueState_Recording;
-            currentPacket = 0;
-            
-            OSStatus err;
-            
-            err = AudioQueueNewInput(&audioFormat, AudioInputCallback, (__bridge void *)(self), CFRunLoopGetCurrent(), kCFRunLoopCommonModes, 0, &queue);
-            NSAssert(err == noErr,@"Error setting up audio queue: %i",err);
-            
-            //allocate the buffers
-            for (int i = 0; i < NUM_BUFFERS; i++) {
-                AudioQueueAllocateBuffer(queue, 16000, &buffers[i]);
-                AudioQueueEnqueueBuffer (queue, buffers[i], 0, NULL);
-            }
-            
-            NSString *directoryName = NSTemporaryDirectory();
-            
-            NSString *generatedFileName =
-            [directoryName stringByAppendingPathComponent:@"audioQueueFile.aif"];
-            
-            self.audioFile = [NSURL URLWithString:generatedFileName];
-            
-            
-            err = AudioFileCreateWithURL((__bridge CFURLRef)(self.audioFile),
-                                         kAudioFileAIFFType,
-                                         &audioFormat,
-                                         kAudioFileFlags_EraseFile,
-                                         &audioFileID);
-            NSAssert(err == noErr,@"Error setting up audio queue recording file: %i",err);
-            
-            err = AudioQueueStart(queue, NULL);
-            NSAssert(err == noErr,@"Error starting audio queue %i",err);
-            
-            NSLog(@"Recording");
-            
-        } else {
-            NSAssert(NO, @"No mic permission");
-        }
-    }];
+    OSStatus err;
+    
+    err = AudioQueueNewInput(&audioFormat, AudioInputCallback, (__bridge void *)(self), CFRunLoopGetCurrent(), kCFRunLoopCommonModes, 0, &queue);
+    NSAssert(err == noErr,@"Error setting up audio queue: %i",err);
+    
+    //allocate the buffers
+    for (int i = 0; i < NUM_BUFFERS; i++) {
+        AudioQueueAllocateBuffer(queue, 16000, &buffers[i]);
+        AudioQueueEnqueueBuffer (queue, buffers[i], 0, NULL);
+    }
+    
+    NSString *directoryName = NSTemporaryDirectory();
+    NSString *generatedFileName =
+    [directoryName stringByAppendingPathComponent:@"audioQueueFile.aif"];
+    
+    self.audioFile = [NSURL URLWithString:generatedFileName];
     
     
+    err = AudioFileCreateWithURL((__bridge CFURLRef)(self.audioFile),
+                                 kAudioFileAIFFType,
+                                 &audioFormat,
+                                 kAudioFileFlags_EraseFile,
+                                 &audioFileID);
+    NSAssert(err == noErr,@"Error setting up audio queue recording file: %i",err);
+    
+    err = AudioQueueStart(queue, NULL);
+    NSAssert(err == noErr,@"Error starting audio queue %i",err);
+    
+    NSLog(@"Recording");
 }
 
 - (void) stopRecording {
@@ -266,7 +251,7 @@ void AudioOutputCallback(void * inUserData,
 - (void) startPlayback {
     NSLog(@"Starting playback method");
     
-    //[self stopPlayback];
+    [self stopPlayback];
     
     currentPacket = 0;
     

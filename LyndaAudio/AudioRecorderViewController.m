@@ -93,25 +93,14 @@
         //error
     }
     
-    [[AVAudioSession sharedInstance] requestRecordPermission:^(BOOL granted) {
-        if (granted) {
-            // Microphone enabled code
-            [self.audioRecorder prepareToRecord];
-            
-            BOOL recorded = [self.audioRecorder recordForDuration:10.0];
-            if (!recorded) {
-                NSLog(@"Error");
-            }
-            self.statusLabel.text = @"Recording for 10 sec...";
-            [self disableButtons];
-        }
-        else {
-            // Microphone disabled code
-            NSAssert(NO,@"No microphone permission");
-        }
-    }];
+    [self.audioRecorder prepareToRecord];
     
-    
+    BOOL recorded = [self.audioRecorder recordForDuration:10.0];
+    if (!recorded) {
+        NSLog(@"Error");
+    }
+    self.statusLabel.text = @"Recording for 10 sec...";
+    [self disableButtons];
 }
 
 - (IBAction)playButtonPressed:(id)sender {
