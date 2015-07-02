@@ -35,7 +35,7 @@ typedef NS_ENUM(NSUInteger, AudioQueueState) {
 
 static AudioStreamBasicDescription audioFormat;
 
-static SInt64 currentPacket;
+static SInt64 currentByte;
 static AudioQueueRef queue;
 static AudioQueueBufferRef buffers[NUM_BUFFERS];
 static AudioFileID audioFileID;
@@ -54,26 +54,18 @@ void AudioInputCallback(void * inUserData,
     
     OSStatus err;
     
-    printf("Writing buffer %lld\n", currentPacket);
+    printf("Writing buffer %lld\n", currentByte);
     
     UInt32 ioBytes = audioFormat.mBytesPerPacket * inNumberPacketDescriptions;
     
-    err = AudioFileWriteBytes(audioFileID, false, currentPacket, &ioBytes, inBuffer->mAudioData);
-    
-//    err = AudioFileWritePackets(audioFileID,
-//                            false,
-//                            inBuffer->mAudioDataByteSize,
-//                            inPacketDescs,
-//                            currentPacket,
-//                            &inNumberPacketDescriptions,
-//                            inBuffer->mAudioData);
+    err = AudioFileWriteBytes(audioFileID, false, currentByte, &ioBytes, inBuffer->mAudioData);
     
     if (err != noErr) {
         //error
         printf("Recording error! %i\n",err);
     }
     
-    currentPacket += ioBytes;
+    currentByte += ioBytes;
     
     AudioQueueEnqueueBuffer(queue, inBuffer, 0, NULL);
 }
@@ -90,7 +82,7 @@ void AudioOutputCallback(void * inUserData,
         return;
     }
     
-    printf("Queuing buffer %lld for playback\n", currentPacket);
+    printf("Queuing buffer %lld for playback\n", currentByte);
     
     AudioStreamPacketDescription* packetDescs;
     
@@ -98,9 +90,8 @@ void AudioOutputCallback(void * inUserData,
     UInt32 numPackets = 8000;
     OSStatus err;
     
-    err = AudioFileReadBytes(audioFileID, false, currentPacket, &numPackets, outBuffer->mAudioData); bytesRead = numPackets;
-    //err = AudioFileReadPacketData(audioFileID, false, &bytesRead, NULL, currentPacket, &numPackets, outBuffer->mAudioData);
-    
+    err = AudioFileReadBytes(audioFileID, false, currentByte, &numPackets, outBuffer->mAudioData); bytesRead = numPackets;
+
     if (err != noErr) {
         if (err == kAudioFileEndOfFileError) {
             
@@ -120,10 +111,10 @@ void AudioOutputCallback(void * inUserData,
                                          0,
                                          packetDescs);
         
-        currentPacket += numPackets;
+        currentByte += numPackets;
     }
-    else
-    {
+    
+    if (numPackets == 0 || err == kAudioFileEndOfFileError) {
         printf("Num packets = %i\n bytesRead = %i\n",numPackets,bytesRead);
         if (viewController.currentQueueState == AudioQueueState_Playing)
         {
@@ -147,15 +138,6 @@ void AudioOutputCallback(void * inUserData,
 
 - (void) setupAudio {
     // Describe format
-    
-//    audioFormat.mSampleRate         = 44100.00;
-//    audioFormat.mFormatID           = kAudioFormatLinearPCM;
-//    audioFormat.mFormatFlags        = kLinearPCMFormatFlagIsBigEndian | kAudioFormatFlagIsSignedInteger | kAudioFormatFlagIsPacked;
-//    audioFormat.mFramesPerPacket    = 1;
-//    audioFormat.mChannelsPerFrame   = 1;
-//    audioFormat.mBitsPerChannel     = 16;
-//    audioFormat.mBytesPerFrame		= audioFormat.mChannelsPerFrame * sizeof(SInt16);
-//    audioFormat.mBytesPerPacket		= audioFormat.mFramesPerPacket * audioFormat.mBytesPerFrame;
     
     audioFormat.mSampleRate         = 44100.00;
     audioFormat.mFormatID           = kAudioFormatLinearPCM;
@@ -201,7 +183,7 @@ void AudioOutputCallback(void * inUserData,
             
             
             self.currentQueueState = AudioQueueState_Recording;
-            currentPacket = 0;
+            currentByte = 0;
             
             OSStatus err;
             
@@ -298,7 +280,7 @@ void AudioOutputCallback(void * inUserData,
     
     //[self stopPlayback];
     
-    currentPacket = 0;
+    currentByte = 0;
     
     OSStatus err;
     
