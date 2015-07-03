@@ -52,6 +52,32 @@
         [self.audioPlayer setVolume:self.rateSlider.value];
         [self.audioPlayer prepareToPlay];
     }
+    
+    //register for interruption
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(audioInterrupt:) name:AVAudioSessionInterruptionNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(audioRouteChange:) name:AVAudioSessionRouteChangeNotification object:nil];
+}
+
+- (void) audioInterrupt:(NSNotification*)notification {
+    //handle an interruption
+    NSDictionary *interruptionDictionary = [notification userInfo];
+    NSNumber *interruptionType = (NSNumber *)[interruptionDictionary valueForKey:AVAudioSessionInterruptionTypeKey];
+    switch ([interruptionType intValue]) {
+        case AVAudioSessionInterruptionTypeBegan:
+            [self stopButtonPressed:nil];
+            break;
+        case AVAudioSessionInterruptionTypeEnded:
+            [self playButtonPressed:self];
+            break;
+        default:
+            break;
+    }
+    
+}
+
+- (void) audioRouteChange:(NSNotification*)notification {
+    //handle a route change
 }
 
 - (IBAction)rateSliderChanged:(UISlider*)sender {
@@ -65,6 +91,10 @@
 
 - (IBAction)stopButtonPressed:(id)sender {
     [self.audioPlayer stop];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end
