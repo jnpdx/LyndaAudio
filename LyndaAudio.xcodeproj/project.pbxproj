@@ -23,6 +23,8 @@
 		A8A9B5631B3A091C0034D84E /* AudioRecorderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8A9B5621B3A091C0034D84E /* AudioRecorderViewController.m */; };
 		A8A9B5AB1B3F17F10034D84E /* AudioUnitInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8A9B5AA1B3F17F10034D84E /* AudioUnitInputViewController.m */; };
 		A8A9B5B11B41C74E0034D84E /* AudioQueueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8A9B5B01B41C74E0034D84E /* AudioQueueViewController.m */; };
+		A8FF62861B477162009EDF63 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8FF62851B477162009EDF63 /* MediaPlayer.framework */; };
+		A8FF62881B4782CF009EDF63 /* AlbumArt.png in Resources */ = {isa = PBXBuildFile; fileRef = A8FF62871B4782CF009EDF63 /* AlbumArt.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,8 @@
 		A8A9B5AA1B3F17F10034D84E /* AudioUnitInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioUnitInputViewController.m; sourceTree = "<group>"; };
 		A8A9B5AF1B41C74E0034D84E /* AudioQueueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioQueueViewController.h; sourceTree = "<group>"; };
 		A8A9B5B01B41C74E0034D84E /* AudioQueueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioQueueViewController.m; sourceTree = "<group>"; };
+		A8FF62851B477162009EDF63 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		A8FF62871B4782CF009EDF63 /* AlbumArt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AlbumArt.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8FF62861B477162009EDF63 /* MediaPlayer.framework in Frameworks */,
 				A80953DE1B335E1500AD064D /* AVFoundation.framework in Frameworks */,
 				A80953DC1B335C1A00AD064D /* AudioToolbox.framework in Frameworks */,
 			);
@@ -88,6 +93,7 @@
 		A80953A41B335AAD00AD064D = {
 			isa = PBXGroup;
 			children = (
+				A8FF62851B477162009EDF63 /* MediaPlayer.framework */,
 				A80953DD1B335E1500AD064D /* AVFoundation.framework */,
 				A80953DB1B335C1A00AD064D /* AudioToolbox.framework */,
 				A80953AF1B335AAD00AD064D /* LyndaAudio */,
@@ -125,6 +131,7 @@
 				A8A9B5B01B41C74E0034D84E /* AudioQueueViewController.m */,
 				A80953C01B335AAD00AD064D /* Images.xcassets */,
 				A80953C21B335AAD00AD064D /* LaunchScreen.xib */,
+				A8FF62871B4782CF009EDF63 /* AlbumArt.png */,
 				A8A9B5641B3A09290034D84E /* Audio Files */,
 				A80953B01B335AAD00AD064D /* Supporting Files */,
 			);
@@ -215,6 +222,11 @@
 				TargetAttributes = {
 					A80953AC1B335AAD00AD064D = {
 						CreatedOnToolsVersion = 6.3.2;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					A80953C81B335AAD00AD064D = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -247,6 +259,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A80953BF1B335AAD00AD064D /* Main.storyboard in Resources */,
+				A8FF62881B4782CF009EDF63 /* AlbumArt.png in Resources */,
 				A80953C41B335AAD00AD064D /* LaunchScreen.xib in Resources */,
 				A80953E01B33761700AD064D /* SoManyTimes.mp3 in Resources */,
 				A80953C11B335AAD00AD064D /* Images.xcassets in Resources */,

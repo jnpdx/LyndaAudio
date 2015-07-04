@@ -60,7 +60,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(audioRouteChange:) name:AVAudioSessionRouteChangeNotification object:nil];
     
     
-    MPRemoteCommandCenter *s = [MPRemoteCommandCenter sharedCommandCenter];
+    MPRemoteCommandCenter *commandCenter = [MPRemoteCommandCenter sharedCommandCenter];
     [commandCenter.playCommand addTarget:self action:@selector(playButtonPressed:)];
     [commandCenter.stopCommand addTarget:self action:@selector(stopButtonPressed:)];
     [commandCenter.pauseCommand addTarget:self action:@selector(stopButtonPressed:)];
@@ -109,6 +109,17 @@
 - (IBAction)playButtonPressed:(id)sender {
     BOOL played = [self.audioPlayer play];
     NSAssert(played == YES, @"Failed playing");
+    
+    MPMediaItemArtwork *albumArt = [[MPMediaItemArtwork alloc] initWithImage: [UIImage imageNamed:@"AlbumArt"]];
+    
+    NSDictionary *songInfo = @{
+        MPMediaItemPropertyTitle:@"Lynda Song",
+        MPMediaItemPropertyArtist:@"Lynda.com",
+        MPMediaItemPropertyAlbumTitle:@"iOS Audio",
+        MPMediaItemPropertyArtwork:albumArt,
+    };
+
+    [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:songInfo];
 }
 
 - (IBAction)stopButtonPressed:(id)sender {
