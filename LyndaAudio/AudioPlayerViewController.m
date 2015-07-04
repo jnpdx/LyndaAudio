@@ -9,6 +9,7 @@
 #import "AudioPlayerViewController.h"
 
 @import AVFoundation;
+@import MediaPlayer;
 
 @interface AudioPlayerViewController ()
 
@@ -57,19 +58,31 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(audioInterrupt:) name:AVAudioSessionInterruptionNotification object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(audioRouteChange:) name:AVAudioSessionRouteChangeNotification object:nil];
+    
+    
+    MPRemoteCommandCenter *s = [MPRemoteCommandCenter sharedCommandCenter];
+    [commandCenter.playCommand addTarget:self action:@selector(playButtonPressed:)];
+    [commandCenter.stopCommand addTarget:self action:@selector(stopButtonPressed:)];
+    [commandCenter.pauseCommand addTarget:self action:@selector(stopButtonPressed:)];
+    
 }
 
 - (void) audioInterrupt:(NSNotification*)notification {
     //handle an interruption
-    NSDictionary *interruptionDictionary = [notification userInfo];
-    NSNumber *interruptionType = (NSNumber *)[interruptionDictionary valueForKey:AVAudioSessionInterruptionTypeKey];
+    NSNumber *interruptionType = (NSNumber *)[notification.userInfo valueForKey:AVAudioSessionInterruptionTypeKey];
     switch ([interruptionType intValue]) {
         case AVAudioSessionInterruptionTypeBegan:
             [self stopButtonPressed:nil];
             break;
         case AVAudioSessionInterruptionTypeEnded:
-            [self playButtonPressed:self];
+        {
+            if ([(NSNumber *)[notification.userInfo valueForKey:AVAudioSessionInterruptionOptionKey] intValue] == AVAudioSessionInterruptionOptionShouldResume) {
+                [self playButtonPressed:self];
+            }
+            
             break;
+        
+        }
         default:
             break;
     }
@@ -78,6 +91,15 @@
 
 - (void) audioRouteChange:(NSNotification*)notification {
     //handle a route change
+    NSNumber *reason = (NSNumber *)[notification.userInfo valueForKey:AVAudioSessionRouteChangeReasonKey];
+    switch ([reason intValue] ) {
+        case AVAudioSessionRouteChangeReasonOldDeviceUnavailable:
+        case AVAudioSessionRouteChangeReasonNoSuitableRouteForCategory:
+            [self stopButtonPressed:nil];
+            break;
+        default:
+            break;
+    }
 }
 
 - (IBAction)rateSliderChanged:(UISlider*)sender {
