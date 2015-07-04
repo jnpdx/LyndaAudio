@@ -112,10 +112,16 @@
     
     MPMediaItemArtwork *albumArt = [[MPMediaItemArtwork alloc] initWithImage: [UIImage imageNamed:@"AlbumArt"]];
     
+    NSLog(@"Duration: %f",self.audioPlayer.duration);
+    NSLog(@"Current time: %f",self.audioPlayer.currentTime);
+    
     NSDictionary *songInfo = @{
         MPMediaItemPropertyTitle:@"Lynda Song",
         MPMediaItemPropertyArtist:@"Lynda.com",
         MPMediaItemPropertyAlbumTitle:@"iOS Audio",
+        MPMediaItemPropertyPlaybackDuration:@(self.audioPlayer.duration
+),
+        MPNowPlayingInfoPropertyElapsedPlaybackTime:@(self.audioPlayer.currentTime),
         MPMediaItemPropertyArtwork:albumArt,
     };
 

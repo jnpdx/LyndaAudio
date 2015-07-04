@@ -15,7 +15,6 @@
 		A80953C11B335AAD00AD064D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A80953C01B335AAD00AD064D /* Images.xcassets */; };
 		A80953C41B335AAD00AD064D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A80953C21B335AAD00AD064D /* LaunchScreen.xib */; };
 		A80953D01B335AAD00AD064D /* LyndaAudioTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A80953CF1B335AAD00AD064D /* LyndaAudioTests.m */; };
-		A80953DA1B335BB100AD064D /* Cowbell.wav in Resources */ = {isa = PBXBuildFile; fileRef = A80953D91B335BB100AD064D /* Cowbell.wav */; };
 		A80953DC1B335C1A00AD064D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A80953DB1B335C1A00AD064D /* AudioToolbox.framework */; };
 		A80953DE1B335E1500AD064D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A80953DD1B335E1500AD064D /* AVFoundation.framework */; };
 		A80953E01B33761700AD064D /* SoManyTimes.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A80953DF1B33761700AD064D /* SoManyTimes.mp3 */; };
@@ -25,6 +24,7 @@
 		A8A9B5B11B41C74E0034D84E /* AudioQueueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8A9B5B01B41C74E0034D84E /* AudioQueueViewController.m */; };
 		A8FF62861B477162009EDF63 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8FF62851B477162009EDF63 /* MediaPlayer.framework */; };
 		A8FF62881B4782CF009EDF63 /* AlbumArt.png in Resources */ = {isa = PBXBuildFile; fileRef = A8FF62871B4782CF009EDF63 /* AlbumArt.png */; };
+		A8FF628A1B48A911009EDF63 /* MetalBell.wav in Resources */ = {isa = PBXBuildFile; fileRef = A8FF62891B48A911009EDF63 /* MetalBell.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,7 +53,6 @@
 		A80953C91B335AAD00AD064D /* LyndaAudioTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LyndaAudioTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A80953CE1B335AAD00AD064D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A80953CF1B335AAD00AD064D /* LyndaAudioTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LyndaAudioTests.m; sourceTree = "<group>"; };
-		A80953D91B335BB100AD064D /* Cowbell.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Cowbell.wav; sourceTree = "<group>"; };
 		A80953DB1B335C1A00AD064D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		A80953DD1B335E1500AD064D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		A80953DF1B33761700AD064D /* SoManyTimes.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = SoManyTimes.mp3; sourceTree = "<group>"; };
@@ -67,6 +66,7 @@
 		A8A9B5B01B41C74E0034D84E /* AudioQueueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioQueueViewController.m; sourceTree = "<group>"; };
 		A8FF62851B477162009EDF63 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		A8FF62871B4782CF009EDF63 /* AlbumArt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AlbumArt.png; sourceTree = "<group>"; };
+		A8FF62891B48A911009EDF63 /* MetalBell.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = MetalBell.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,7 +167,7 @@
 		A8A9B5641B3A09290034D84E /* Audio Files */ = {
 			isa = PBXGroup;
 			children = (
-				A80953D91B335BB100AD064D /* Cowbell.wav */,
+				A8FF62891B48A911009EDF63 /* MetalBell.wav */,
 				A80953DF1B33761700AD064D /* SoManyTimes.mp3 */,
 			);
 			name = "Audio Files";
@@ -258,12 +258,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8FF628A1B48A911009EDF63 /* MetalBell.wav in Resources */,
 				A80953BF1B335AAD00AD064D /* Main.storyboard in Resources */,
 				A8FF62881B4782CF009EDF63 /* AlbumArt.png in Resources */,
 				A80953C41B335AAD00AD064D /* LaunchScreen.xib in Resources */,
 				A80953E01B33761700AD064D /* SoManyTimes.mp3 in Resources */,
 				A80953C11B335AAD00AD064D /* Images.xcassets in Resources */,
-				A80953DA1B335BB100AD064D /* Cowbell.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
